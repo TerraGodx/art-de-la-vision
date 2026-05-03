@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>L'Art de la Vision Naturelle — Méthode EndMyopia adaptée</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-1: #0a1628;
+    --bg-2: #122a47;
+    --bg-3: #1e3a5f;
+    --bg-card: rgba(30, 58, 95, 0.55);
+    --ink: #f0e8d0;
+    --ink-soft: #b8c8d8;
+    --ink-mute: #708096;
+    --sun: #e8b53c;
+    --sun-soft: #f5cf6a;
+    --sky: #6ba8d8;
+    --sky-soft: #95c4e8;
+    --nature: #8aa890;
+    --nature-soft: #a8c0ad;
+    --line: rgba(232, 181, 60, 0.22);
+    --shadow: 0 20px 60px rgba(0,0,0,0.55);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(232, 181, 60, 0.18), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(107, 168, 216, 0.16), transparent 60%),
+      linear-gradient(180deg, var(--bg-1), var(--bg-2));
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.022) 1px, transparent 1px),
+      radial-gradient(circle at 70% 80%, rgba(255,255,255,0.012) 1px, transparent 1px);
+    background-size: 60px 60px, 90px 90px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .app { position: relative; z-index: 1; display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+
+  aside.sidebar {
+    background: linear-gradient(180deg, rgba(10,22,40,0.92), rgba(18,42,71,0.88));
+    border-right: 1px solid var(--line);
+    padding: 32px 22px;
+    position: sticky; top: 0; height: 100vh;
+    overflow-y: auto;
+    backdrop-filter: blur(8px);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 36px; }
+  .brand-mark {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--sun-soft), var(--sun) 60%, var(--sky));
+    display: grid; place-items: center;
+    color: var(--bg-1);
+    font-family: var(--serif); font-weight: 700; font-size: 22px; font-style: italic;
+    box-shadow: 0 6px 20px rgba(232, 181, 60, 0.40);
+    border: 2px solid rgba(232, 181, 60, 0.35);
+  }
+  .brand-name { font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: 0.3px; color: var(--ink); line-height: 1.15; }
+  .brand-sub { font-size: 11px; letter-spacing: 2px; color: var(--sun); text-transform: uppercase; }
+
+  nav.menu { display: flex; flex-direction: column; gap: 4px; }
+  .menu-label { font-size: 11px; letter-spacing: 2px; color: var(--ink-mute); text-transform: uppercase; padding: 16px 14px 8px; }
+  .menu-item {
+    background: none; border: none; color: var(--ink-soft);
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    text-align: left; padding: 11px 14px; border-radius: 10px;
+    cursor: pointer; transition: all .2s ease;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .menu-item:hover { background: rgba(232, 181, 60, 0.10); color: var(--ink); }
+  .menu-item.active {
+    background: linear-gradient(90deg, rgba(232, 181, 60, 0.22), rgba(107, 168, 216, 0.18));
+    color: var(--ink);
+    box-shadow: inset 2px 0 0 var(--sun);
+  }
+  .menu-item .ico { font-size: 16px; opacity: .8; }
+
+  .progress-card {
+    margin-top: 24px;
+    padding: 18px;
+    background: linear-gradient(135deg, rgba(107, 168, 216, 0.30), rgba(232, 181, 60, 0.10));
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .progress-card h4 { font-family: var(--serif); font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+  .progress-card .level { font-size: 12px; color: var(--sun); letter-spacing: 1px; text-transform: uppercase; }
+  .progress-bar { height: 6px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; margin: 12px 0 6px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--sun), var(--sky-soft)); transition: width .6s ease; }
+  .progress-card .stats { font-size: 12px; color: var(--ink-mute); }
+
+  main { padding: 48px 60px 80px; max-width: 1200px; width: 100%; }
+  .view { display: none; animation: fadeUp .5s ease; }
+  .view.active { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  h1 { font-family: var(--serif); font-weight: 600; font-size: 46px; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 8px; }
+  h1 em { color: var(--sun); font-style: italic; }
+  .subtitle { color: var(--ink-soft); font-size: 16px; max-width: 700px; margin-bottom: 36px; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 28px; margin-bottom: 14px; }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 21px; margin-bottom: 10px; }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+  }
+  .grid { display: grid; gap: 22px; }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .grid-4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    background: linear-gradient(135deg, rgba(232, 181, 60, 0.15), rgba(232, 181, 60, 0.05));
+    border: 1px solid rgba(232, 181, 60, 0.45);
+    border-left: 4px solid var(--sun);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .disclaimer strong { color: var(--sun); }
+
+  /* HOME */
+  .hero-card {
+    background: linear-gradient(135deg, rgba(107, 168, 216, 0.30), rgba(232, 181, 60, 0.12));
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 32px 36px;
+    margin-bottom: 28px;
+  }
+  .hero-card .lab { font-size: 11px; letter-spacing: 2px; color: var(--sun); text-transform: uppercase; margin-bottom: 8px; }
+  .hero-card h2 { font-family: var(--serif); font-size: 30px; margin-bottom: 12px; }
+  .hero-card p { color: var(--ink-soft); max-width: 680px; line-height: 1.65; }
+
+  .stat-card { text-align: center; padding: 22px 16px; }
+  .stat-num { font-family: var(--serif); font-size: 38px; font-weight: 600; background: linear-gradient(135deg, var(--sun-soft), var(--sun)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-label { font-size: 11px; letter-spacing: 1.5px; color: var(--ink-mute); text-transform: uppercase; margin-top: 4px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, var(--sun), #b08824);
+    color: var(--bg-1); border: none;
+    padding: 12px 24px; border-radius: 100px; cursor: pointer;
+    font-family: var(--sans); font-weight: 600; font-size: 14px;
+    letter-spacing: 0.3px; transition: all .2s ease;
+    box-shadow: 0 8px 24px rgba(232, 181, 60, 0.35);
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(232, 181, 60, 0.50); }
+  .btn-ghost {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--line); box-shadow: none;
+  }
+  .btn-ghost:hover { background: rgba(232, 181, 60, 0.10); border-color: var(--sun); }
+  .btn-sky {
+    background: linear-gradient(135deg, var(--sky), #4a7ba5);
+    color: var(--ink);
+    box-shadow: 0 8px 24px rgba(107, 168, 216, 0.35);
+  }
+  .btn-nature {
+    background: linear-gradient(135deg, var(--nature), #5a7a60);
+    color: var(--ink);
+    box-shadow: 0 8px 24px rgba(138, 168, 144, 0.35);
+  }
+
+  /* MEASUREMENT TOOL */
+  .measure-display {
+    text-align: center; padding: 30px 20px;
+  }
+  .measure-input-group {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    margin: 24px 0;
+  }
+  .measure-input {
+    font-family: var(--mono); font-size: 56px; font-weight: 700;
+    color: var(--ink); background: transparent;
+    border: none; border-bottom: 2px solid var(--sun);
+    text-align: center; width: 180px;
+    padding: 8px 0;
+  }
+  .measure-input:focus { outline: none; border-color: var(--sun-soft); }
+  .measure-unit { font-size: 24px; color: var(--ink-soft); font-family: var(--serif); }
+  .diopter-result {
+    margin-top: 24px;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(107, 168, 216, 0.20), rgba(232, 181, 60, 0.10));
+    border: 1px solid var(--sun);
+    border-radius: 14px;
+  }
+  .diopter-result .lab { font-size: 12px; letter-spacing: 2px; color: var(--sun); text-transform: uppercase; margin-bottom: 8px; }
+  .diopter-result .value { font-family: var(--serif); font-size: 48px; color: var(--ink); font-weight: 600; }
+  .diopter-result .help { font-size: 13px; color: var(--ink-soft); margin-top: 10px; }
+
+  .progress-graph {
+    height: 200px; padding: 18px 16px;
+    background: rgba(255,255,255,0.03); border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .graph-bar { display: inline-block; width: 28px; margin-right: 4px; vertical-align: bottom; transition: height .4s ease; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, var(--sun), var(--sun-soft)); position: relative; }
+  .graph-bar:hover { background: linear-gradient(180deg, var(--sun-soft), var(--sun)); }
+  .graph-bar .lbl { position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%); font-size: 9px; color: var(--ink-mute); white-space: nowrap; }
+  .graph-bar .val { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 10px; color: var(--ink-soft); font-family: var(--mono); }
+
+  .measure-history { margin-top: 18px; }
+  .measure-row { padding: 10px 14px; background: rgba(255,255,255,0.03); border-radius: 8px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+  .measure-row .date { color: var(--ink-mute); }
+  .measure-row .vals { color: var(--ink); font-family: var(--mono); }
+  .measure-row .delete { background: none; border: none; color: var(--ink-mute); cursor: pointer; font-size: 14px; padding: 0 8px; }
+  .measure-row .delete:hover { color: var(--sun); }
+
+  /* OUTDOOR TIMER */
+  .outdoor-display {
+    text-align: center; padding: 40px 20px;
+  }
+  .outdoor-clock {
+    font-family: var(--mono); font-size: 86px; font-weight: 700;
+    color: var(--ink);
+    text-shadow: 0 4px 24px rgba(232, 181, 60, 0.30);
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .outdoor-target {
+    font-size: 13px; color: var(--ink-mute); letter-spacing: 1px; margin-bottom: 22px;
+  }
+  .outdoor-progress-ring {
+    width: 200px; height: 200px;
+    margin: 20px auto;
+  }
+  .outdoor-cumul { padding: 18px; text-align: center; background: rgba(255,255,255,0.04); border-radius: 12px; }
+  .outdoor-cumul .num { font-family: var(--serif); font-size: 30px; color: var(--sun); }
+  .outdoor-cumul .lbl { font-size: 11px; color: var(--ink-mute); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* PAUSE TIMER */
+  .pause-mode-indicator {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    background: rgba(232, 181, 60, 0.20);
+    color: var(--sun); font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .pause-mode-indicator.distance {
+    background: rgba(138, 168, 144, 0.25);
+    color: var(--nature-soft);
+  }
+
+  /* ACTIVE FOCUS GUIDE */
+  .af-step {
+    padding: 20px 24px; margin-bottom: 12px;
+    background: rgba(255,255,255,0.04); border-radius: 12px;
+    border-left: 3px solid var(--sun);
+  }
+  .af-step.active {
+    background: linear-gradient(135deg, rgba(232, 181, 60, 0.18), rgba(107, 168, 216, 0.10));
+    border-left-color: var(--sun-soft);
+  }
+  .af-step .num { font-family: var(--serif); font-style: italic; color: var(--sun); font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .af-step h4 { font-family: var(--serif); font-size: 19px; margin-bottom: 8px; color: var(--ink); }
+  .af-step p { color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
+  .af-timer {
+    font-family: var(--mono); font-size: 60px; font-weight: 700;
+    color: var(--sun); text-align: center;
+    margin: 16px 0;
+  }
+
+  /* MODULES */
+  .module-card { cursor: pointer; transition: all .2s; display: flex; gap: 18px; align-items: center; }
+  .module-card:hover { transform: translateY(-2px); border-color: var(--sun); }
+  .module-num { font-family: var(--serif); font-style: italic; font-size: 38px; color: var(--sun); min-width: 50px; text-align: center; }
+  .module-content { flex: 1; }
+  .module-content h3 { font-size: 18px; margin-bottom: 4px; }
+  .module-content p { color: var(--ink-soft); font-size: 13px; }
+  .module-meta { display: flex; gap: 14px; margin-top: 8px; font-size: 11px; color: var(--ink-mute); }
+  .module-status { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-size: 13px; }
+  .module-status.done { background: var(--sun); color: var(--bg-1); border-color: var(--sun); }
+
+  .module-detail { display: none; padding: 32px; }
+  .module-detail.active { display: block; animation: fadeUp .4s ease; }
+  .module-detail h2 { margin-bottom: 8px; }
+  .module-section { margin-bottom: 24px; }
+  .module-section h4 { font-family: var(--serif); font-size: 19px; color: var(--sun-soft); margin-bottom: 10px; }
+  .module-section p { color: var(--ink-soft); margin-bottom: 10px; font-size: 15px; }
+  .module-section ul { padding-left: 22px; color: var(--ink-soft); }
+  .module-section ul li { margin-bottom: 8px; font-size: 14px; }
+  .module-back { background: none; border: none; color: var(--sun); font-size: 13px; cursor: pointer; margin-bottom: 18px; letter-spacing: 1px; padding: 0; }
+  .quote-block { border-left: 3px solid var(--sun); padding: 12px 20px; margin: 16px 0; font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink); background: rgba(232, 181, 60, 0.06); border-radius: 0 10px 10px 0; }
+  .quote-block .who { display: block; margin-top: 8px; font-size: 12px; color: var(--sun); letter-spacing: 1.5px; font-style: normal; text-transform: uppercase; }
+
+  /* PROTOCOLS */
+  .protocol-card { padding: 28px; margin-bottom: 18px; }
+  .protocol-card .ptype { font-size: 11px; letter-spacing: 2px; color: var(--sun); text-transform: uppercase; margin-bottom: 6px; }
+  .protocol-card h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 16px; }
+  .protocol-step { padding: 12px 16px; background: rgba(255,255,255,0.03); border-radius: 10px; margin-bottom: 8px; display: flex; gap: 14px; align-items: flex-start; }
+  .protocol-step .pnum { font-family: var(--serif); font-style: italic; color: var(--sun); min-width: 24px; font-weight: 600; }
+  .protocol-step .pcontent { flex: 1; }
+  .protocol-step .ptitle { font-weight: 600; color: var(--ink); margin-bottom: 4px; font-size: 14px; }
+  .protocol-step .pdesc { font-size: 13px; color: var(--ink-soft); }
+  .protocol-step .ptime { font-size: 11px; color: var(--sun-soft); margin-top: 4px; letter-spacing: 1px; }
+
+  /* JOURNAL */
+  .journal-entry { margin-bottom: 14px; padding: 18px 22px; }
+  .journal-entry .date { font-size: 12px; color: var(--sun); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .journal-entry .text { color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.55; white-space: pre-wrap; }
+  .journal-entry .delete { float: right; background: none; border: none; color: var(--ink-mute); cursor: pointer; font-size: 16px; }
+  .journal-entry .delete:hover { color: #c4665a; }
+
+  /* FORMS */
+  label { font-size: 12px; letter-spacing: 1.5px; color: var(--sun); text-transform: uppercase; font-weight: 500; }
+  input, select, textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    color: var(--ink); padding: 12px 16px; border-radius: 10px;
+    font-family: var(--sans); font-size: 14px;
+    transition: border-color .2s; width: 100%;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--sun); }
+  textarea { resize: vertical; min-height: 80px; }
+  .form-row { display: grid; gap: 6px; margin-bottom: 14px; }
+
+  /* TOAST */
+  .toast { position: fixed; bottom: 30px; right: 30px; background: var(--bg-3); border: 1px solid var(--sun); padding: 14px 22px; border-radius: 12px; color: var(--ink); font-size: 14px; box-shadow: var(--shadow); transform: translateY(80px); opacity: 0; transition: all .3s ease; z-index: 100; }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  @media (max-width: 900px) {
+    .app { grid-template-columns: 1fr; }
+    aside.sidebar { position: static; height: auto; padding: 20px; }
+    nav.menu { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+    .menu-label { display: none; }
+    .menu-item { padding: 8px 12px; font-size: 13px; }
+    .progress-card { display: none; }
+    main { padding: 28px 20px 60px; }
+    h1 { font-size: 32px; }
+    .outdoor-clock { font-size: 60px; }
+    .measure-input { font-size: 40px; width: 130px; }
+  }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(232, 181, 60, 0.25); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(232, 181, 60, 0.45); }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">V</div>
+      <div>
+        <div class="brand-name">L'Art de la Vision</div>
+        <div class="brand-sub">Méthode EndMyopia</div>
+      </div>
+    </div>
+    <nav class="menu">
+      <div class="menu-label">Tableau de bord</div>
+      <button class="menu-item active" data-view="home"><span class="ico">◐</span> Aujourd'hui</button>
+      <div class="menu-label">Mesures &amp; tests</div>
+      <button class="menu-item" data-view="measure"><span class="ico">◐</span> Mesure cm → dioptries</button>
+      <button class="menu-item" data-view="snellen"><span class="ico">◐</span> Test Snellen</button>
+      <button class="menu-item" data-view="prescription"><span class="ico">◐</span> Mes lunettes</button>
+      <div class="menu-label">Outils quotidiens</div>
+      <button class="menu-item" data-view="outdoor"><span class="ico">◐</span> Temps extérieur</button>
+      <button class="menu-item" data-view="pause"><span class="ico">◐</span> Pauses oculaires</button>
+      <button class="menu-item" data-view="active"><span class="ico">◐</span> Active Focus</button>
+      <button class="menu-item" data-view="exercises"><span class="ico">◐</span> Exercices oculaires</button>
+      <div class="menu-label">Méthode</div>
+      <button class="menu-item" data-view="modules"><span class="ico">◐</span> Les 10 principes</button>
+      <button class="menu-item" data-view="protocols"><span class="ico">◐</span> Protocoles quotidiens</button>
+      <div class="menu-label">Suivi</div>
+      <button class="menu-item" data-view="journal"><span class="ico">◐</span> Journal de vision</button>
+    </nav>
+    <div class="progress-card">
+      <div class="level" id="userRank">Débutant</div>
+      <h4 id="userTitle">Votre progression</h4>
+      <div class="progress-bar"><div class="progress-fill" id="globalProgress" style="width: 0%"></div></div>
+      <div class="stats" id="globalStats">0 mesures · 0 jours</div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ============ HOME ============ -->
+    <section class="view active" id="view-home">
+      <h1>Voir <em>plus loin</em>, naturellement.</h1>
+      <p class="subtitle">Une application inspirée de la méthode EndMyopia : réduire progressivement la myopie acquise par de meilleures habitudes visuelles. Pas une pilule magique — une discipline patiente sur des mois et des années, basée sur l'Active Focus, le bon usage des lunettes différentielles, et 2-3 heures de vision distance par jour.</p>
+
+      <div class="disclaimer">
+        <strong>⚠ Avertissement médical important.</strong> EndMyopia n'est pas une méthode validée par la médecine conventionnelle ni reconnue comme traitement médical. Cette application est un outil de suivi et d'éducation — pas un dispositif médical. <strong>Tout changement de prescription doit être discuté avec un ophtalmologue ou optométriste.</strong> Consultez un professionnel de santé visuelle régulièrement, surtout en cas de myopie élevée, de symptômes nouveaux (mouches volantes, éclairs, perte de champ visuel) ou de pathologie oculaire connue.
+      </div>
+
+      <div class="hero-card">
+        <div class="lab">Aujourd'hui</div>
+        <h2 id="todayHeadline">Bienvenue. Construisez vos habitudes visuelles.</h2>
+        <p id="todaySuggestion">L'amélioration de la vision passe par 3 piliers quotidiens : (1) mesurer pour voir le progrès, (2) sortir 2-3h pour la vision distance, (3) prendre de vraies pauses pendant le travail proche. Commencez par une mesure aujourd'hui pour fixer votre point de départ.</p>
+      </div>
+
+      <div class="grid grid-4" style="margin-bottom: 32px;">
+        <div class="card stat-card"><div class="stat-num" id="statCurrentDiopter">—</div><div class="stat-label">Dioptries actuelles</div></div>
+        <div class="card stat-card"><div class="stat-num" id="statOutdoorToday">0h</div><div class="stat-label">Extérieur aujourd'hui</div></div>
+        <div class="card stat-card"><div class="stat-num" id="statStreak">0</div><div class="stat-label">Jours consécutifs</div></div>
+        <div class="card stat-card"><div class="stat-num" id="statSessions">0</div><div class="stat-label">Sessions Active Focus</div></div>
+      </div>
+
+      <h2>Démarrer maintenant</h2>
+      <p class="subtitle">Choisissez l'outil qui correspond à votre intention du moment.</p>
+
+      <div class="grid grid-2">
+        <div class="card" style="cursor:pointer;" onclick="navigate('measure')">
+          <h3>📏 Mesurer ma vision actuelle</h3>
+          <p style="color: var(--ink-soft); margin-top: 8px; font-size: 14px;">Mesure du blur edge en centimètres → conversion automatique en dioptries. Plus précis qu'une auto-évaluation et indépendant des prescriptions.</p>
+          <p style="color: var(--sun); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 14px; font-weight: 600;">Faire une mesure →</p>
+        </div>
+        <div class="card" style="cursor:pointer;" onclick="navigate('outdoor')">
+          <h3>☀ Tracker mon temps extérieur</h3>
+          <p style="color: var(--ink-soft); margin-top: 8px; font-size: 14px;">Objectif : 2-3 heures de vision distance par jour, idéalement à la lumière naturelle. C'est le levier #1 de la méthode.</p>
+          <p style="color: var(--sun); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 14px; font-weight: 600;">Démarrer le timer →</p>
+        </div>
+        <div class="card" style="cursor:pointer;" onclick="navigate('pause')">
+          <h3>⏱ Programmer mes pauses</h3>
+          <p style="color: var(--ink-soft); margin-top: 8px; font-size: 14px;">Méthode EndMyopia : 3h écran → 1h pause distance (au lieu du 20-20-20 classique, jugé moins efficace). Adapté à la lecture, au travail, aux écrans.</p>
+          <p style="color: var(--sun); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 14px; font-weight: 600;">Lancer une session →</p>
+        </div>
+        <div class="card" style="cursor:pointer;" onclick="navigate('active')">
+          <h3>👁 Pratiquer l'Active Focus</h3>
+          <p style="color: var(--ink-soft); margin-top: 8px; font-size: 14px;">L'exercice central de la méthode : trouver le blur horizon et entraîner la relaxation du muscle ciliaire. ~1 mois de pratique quotidienne pour le maîtriser.</p>
+          <p style="color: var(--sun); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 14px; font-weight: 600;">Démarrer l'exercice →</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MEASURE ============ -->
+    <section class="view" id="view-measure">
+      <h1>Mesure <em>cm → dioptries</em></h1>
+      <p class="subtitle">Méthode du blur edge : tenez un texte (taille 10-12pt) à différentes distances. Mesurez chaque œil séparément (cachez l'autre) puis les deux ensemble. La formule : <strong style="color: var(--sun);">dioptries = 100 / cm</strong>. Plus la distance augmente, moins la myopie est forte.</p>
+
+      <div class="card">
+        <div class="measure-display">
+          <h3 style="margin-bottom: 6px;">Mesure du blur edge</h3>
+          <p style="color: var(--ink-soft); font-size: 13px; max-width: 500px; margin: 0 auto 16px;">À quelle distance maximale (en cm) voyez-vous le texte parfaitement net ? Mesurez 3 fois et entrez la distance moyenne pour réduire le bruit.</p>
+
+          <div class="measure-input-group">
+            <input type="number" id="measureCm" class="measure-input" placeholder="50" min="1" max="500" oninput="updateDiopter()">
+            <span class="measure-unit">cm</span>
+          </div>
+
+          <div class="diopter-result" id="diopterResult">
+            <div class="lab">Équivalent dioptrique</div>
+            <div class="value" id="diopterValue">—</div>
+            <div class="help" id="diopterHelp">Entrez votre distance pour calculer.</div>
+          </div>
+
+          <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; max-width: 640px; margin-left: auto; margin-right: auto;">
+            <div class="form-row" style="margin: 0;">
+              <label>Œil mesuré</label>
+              <select id="measureEye">
+                <option value="right">Œil droit (OD)</option>
+                <option value="left">Œil gauche (OG)</option>
+                <option value="both">Les deux</option>
+              </select>
+            </div>
+            <div class="form-row" style="margin: 0;">
+              <label>Cylindre (optionnel)</label>
+              <input type="number" id="measureCyl" placeholder="-0.75" step="0.25" min="-6" max="0">
+            </div>
+            <div class="form-row" style="margin: 0;">
+              <label>Axe (si cylindre)</label>
+              <input type="number" id="measureAxis" placeholder="180" min="0" max="180">
+            </div>
+          </div>
+          <div style="margin-top: 16px;">
+            <button class="btn" onclick="saveMeasure()">✓ Enregistrer la mesure</button>
+            <button class="btn btn-ghost" onclick="exportMeasuresCSV()" style="margin-left: 8px;">📥 Export CSV</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3" style="margin-top: 24px;">
+        <div class="card stat-card">
+          <div class="stat-num" id="statOdCurrent">—</div>
+          <div class="stat-label">Œil droit (dernière)</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-num" id="statOgCurrent">—</div>
+          <div class="stat-label">Œil gauche (dernière)</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-num" id="statTrend">—</div>
+          <div class="stat-label">Tendance / mois</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 24px;">
+        <h3>📈 Progression dans le temps</h3>
+        <p style="color: var(--ink-soft); font-size: 13px; margin: 6px 0 18px;">Visualisez vos mesures successives. La courbe descendante montre une amélioration (moins de dioptries = vision moins myope).</p>
+        <div class="progress-graph" id="measureGraph">
+          <div style="text-align: center; color: var(--ink-mute); font-style: italic; padding-top: 70px;">Aucune mesure encore. Faites votre première mesure ci-dessus.</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 24px;">
+        <h3>📋 Historique</h3>
+        <div class="measure-history" id="measureHistory">
+          <p style="color: var(--ink-mute); font-style: italic; text-align: center; padding: 16px;">Aucune mesure enregistrée.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 24px;">
+        <h3>💡 Comment bien mesurer</h3>
+        <ul style="color: var(--ink-soft); padding-left: 22px; margin-top: 10px; line-height: 1.85;">
+          <li><strong style="color: var(--sun-soft);">Lumière constante.</strong> Mesurez toujours dans des conditions d'éclairage similaires (jour, ou même lampe).</li>
+          <li><strong style="color: var(--sun-soft);">Texte standardisé.</strong> Utilisez le même texte (taille 10-12pt) à chaque mesure pour comparer ce qui est comparable.</li>
+          <li><strong style="color: var(--sun-soft);">Sans lunettes/lentilles.</strong> Mesurez à œil nu pour mesurer votre vraie capacité.</li>
+          <li><strong style="color: var(--sun-soft);">Reposé.</strong> Le matin ou après une pause distance, pas après 4h d'écran (résultat trompeur).</li>
+          <li><strong style="color: var(--sun-soft);">Hebdomadaire, pas quotidien.</strong> Les variations jour-à-jour sont normales. Mesurez 1-2 fois/semaine, le même jour, à la même heure.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SNELLEN ============ -->
+    <section class="view" id="view-snellen">
+      <h1>Test <em>Snellen</em></h1>
+      <p class="subtitle">Le test classique d'acuité visuelle, calibré pour votre écran. Affiche les lettres à la bonne taille pour une distance de test de 3 mètres. À combiner avec la mesure cm pour une vue complète de votre vision.</p>
+
+      <div class="card">
+        <h3>1. Calibration de l'écran</h3>
+        <p style="color: var(--ink-soft); font-size: 13px; margin: 6px 0 14px;">Mesurez la diagonale physique de votre écran (en pouces) et entrez-la ci-dessous. Cette valeur est sur la plupart des étiquettes constructeur ou cherchable selon le modèle.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; max-width: 640px;">
+          <div class="form-row" style="margin: 0;">
+            <label>Diagonale écran (pouces)</label>
+            <input type="number" id="snellenDiag" placeholder="15.6" step="0.1" min="5" max="80" oninput="updateSnellen()">
+          </div>
+          <div class="form-row" style="margin: 0;">
+            <label>Distance de test (mètres)</label>
+            <select id="snellenDist" onchange="updateSnellen()">
+              <option value="3">3 m (recommandé)</option>
+              <option value="2">2 m</option>
+              <option value="1.5">1.5 m</option>
+              <option value="6">6 m (norme classique)</option>
+            </select>
+          </div>
+          <div class="form-row" style="margin: 0;">
+            <label>Œil testé</label>
+            <select id="snellenEye">
+              <option value="right">Œil droit (OD)</option>
+              <option value="left">Œil gauche (OG)</option>
+              <option value="both">Les deux</option>
+            </select>
+          </div>
+        </div>
+        <p id="snellenCalib" style="color: var(--sun-soft); font-size: 13px; margin-top: 14px; font-style: italic;">↑ Entrez la diagonale de l'écran pour activer le test</p>
+      </div>
+
+      <div class="card" style="margin-top: 22px;">
+        <h3>2. Tableau Snellen</h3>
+        <p style="color: var(--ink-soft); font-size: 13px; margin: 6px 0 14px;">Placez-vous à <strong style="color: var(--sun);"><span id="snellenDistLabel">3</span> mètres</strong> de l'écran. Cachez un œil. Lisez la plus petite ligne dont vous identifiez correctement les lettres. Notez la valeur correspondante (20/X).</p>
+        <div id="snellenChart" style="background: white; padding: 24px; border-radius: 12px; text-align: center; font-family: serif; color: black; min-height: 200px;">
+          <div style="color: #666; font-style: italic; padding: 60px 0;">Calibrez l'écran ci-dessus pour afficher le tableau</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 22px;">
+        <h3>3. Enregistrer le résultat</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+          <div class="form-row" style="margin: 0;">
+            <label>Plus petite ligne lue (20/X)</label>
+            <select id="snellenResult">
+              <option value="">— Choisir —</option>
+              <option value="20">20/20 (parfait)</option>
+              <option value="25">20/25</option>
+              <option value="30">20/30</option>
+              <option value="40">20/40</option>
+              <option value="50">20/50</option>
+              <option value="70">20/70</option>
+              <option value="100">20/100</option>
+              <option value="200">20/200</option>
+              <option value="400">20/400</option>
+            </select>
+          </div>
+          <div class="form-row" style="margin: 0;">
+            <label>Avec correction ?</label>
+            <select id="snellenCorrected">
+              <option value="naked">Sans (œil nu)</option>
+              <option value="differential">Avec différentielles</option>
+              <option value="normalized">Avec normalisées</option>
+              <option value="full">Avec correction pleine</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" style="margin-top: 14px;" onclick="saveSnellen()">✓ Enregistrer le test</button>
+      </div>
+
+      <div class="card" style="margin-top: 22px;">
+        <h3>📋 Historique Snellen</h3>
+        <div id="snellenHistory" style="margin-top: 14px;">
+          <p style="color: var(--ink-mute); font-style: italic; text-align: center; padding: 16px;">Aucun test enregistré.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRESCRIPTION ============ -->
+    <section class="view" id="view-prescription">
+      <h1>Mes <em>lunettes</em></h1>
+      <p class="subtitle">Saisissez votre prescription actuelle (celle de l'optométriste). L'app calcule automatiquement les <strong style="color: var(--sun);">différentielles</strong> (pour le proche) et les <strong style="color: var(--sun);">normalisées</strong> (pour la distance) selon la méthode EndMyopia.</p>
+
+      <div class="card">
+        <h3>Prescription actuelle complète</h3>
+        <p style="color: var(--ink-soft); font-size: 13px; margin: 6px 0 18px;">Format standard : sphère (myopie en négatif), cylindre (astigmatisme en négatif), axe (en degrés 0-180).</p>
+        <div style="display: grid; grid-template-columns: 80px repeat(3, 1fr); gap: 12px; align-items: end; max-width: 640px;">
+          <div></div>
+          <label style="text-align: center;">Sphère (D)</label>
+          <label style="text-align: center;">Cylindre (D)</label>
+          <label style="text-align: center;">Axe (°)</label>
+          <label style="text-align: right; padding-bottom: 14px;">OD (droit)</label>
+          <input type="number" id="prescOdSph" placeholder="-3.50" step="0.25" oninput="updatePrescriptionCalc()">
+          <input type="number" id="prescOdCyl" placeholder="-0.75" step="0.25" oninput="updatePrescriptionCalc()">
+          <input type="number" id="prescOdAxis" placeholder="180" min="0" max="180">
+          <label style="text-align: right; padding-bottom: 14px;">OG (gauche)</label>
+          <input type="number" id="prescOgSph" placeholder="-3.25" step="0.25" oninput="updatePrescriptionCalc()">
+          <input type="number" id="prescOgCyl" placeholder="-0.50" step="0.25" oninput="updatePrescriptionCalc()">
+          <input type="number" id="prescOgAxis" placeholder="170" min="0" max="180">
+        </div>
+        <div style="margin-top: 16px; display: flex; gap: 14px; align-items: end; flex-wrap: wrap;">
+          <div class="form-row" style="margin: 0; max-width: 200px;">
+            <label>Distance d'écran principale (cm)</label>
+            <input type="number" id="prescScreenDist" placeholder="60" min="20" max="120" oninput="updatePrescriptionCalc()">
+          </div>
+          <button class="btn" onclick="savePrescription()">✓ Enregistrer ma prescription</button>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top: 22px;">
+        <div class="card" style="background: linear-gradient(135deg, rgba(232, 181, 60, 0.18), rgba(232, 181, 60, 0.05)); border-color: var(--sun);">
+          <div style="font-size: 12px; letter-spacing: 2px; color: var(--sun); text-transform: uppercase; margin-bottom: 8px;">Recommandation</div>
+          <h3>🖥 Lunettes différentielles</h3>
+          <p style="color: var(--ink-soft); font-size: 13px; margin: 6px 0 14px;">Pour le travail proche (écran, lecture). Calibrées pour voir nettement à votre distance d'écran sans sur-accommoder.</p>
+          <div id="diffOutput" style="font-family: var(--mono); font-size: 14px; color: var(--ink); background: rgba(0,0,0,0.25); padding: 14px 18px; border-radius: 10px;">
+            <em style="color: var(--ink-mute);">Entrez votre prescription pour calculer</em>
+          </div>
+        </div>
+        <div class="card" style="background: linear-gradient(135deg, rgba(107, 168, 216, 0.18), rgba(107, 168, 216, 0.05)); border-color: var(--sky);">
+          <div style="font-size: 12px; letter-spacing: 2px; color: var(--sky); text-transform: uppercase; margin-bottom: 8px;">Recommandation</div>
+          <h3>🌳 Lunettes normalisées</h3>
+          <p style="color: var(--ink-soft); font-size: 13px; margin: 6px 0 14px;">Pour la distance / l'extérieur. Sous-corrigées de 0.25 D pour offrir un blur horizon léger et activer l'Active Focus.</p>
+          <div id="normOutput" style="font-family: var(--mono); font-size: 14px; color: var(--ink); background: rgba(0,0,0,0.25); padding: 14px 18px; border-radius: 10px;">
+            <em style="color: var(--ink-mute);">Entrez votre prescription pour calculer</em>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 22px;">
+        <h3>📚 Historique des prescriptions</h3>
+        <p style="color: var(--ink-soft); font-size: 13px; margin: 6px 0 14px;">Conservez la trace de chaque réduction pour suivre votre progression à long terme.</p>
+        <div id="prescHistory">
+          <p style="color: var(--ink-mute); font-style: italic; text-align: center; padding: 16px;">Aucune prescription enregistrée.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 22px;">
+        <h3>💡 Comment utiliser ces calculs</h3>
+        <ul style="color: var(--ink-soft); padding-left: 22px; margin-top: 10px; line-height: 1.85;">
+          <li><strong style="color: var(--sun-soft);">Différentielles :</strong> calculées selon votre distance d'écran. Vous devez voir nettement votre écran et avoir un léger flou si vous regardez plus loin.</li>
+          <li><strong style="color: var(--sun-soft);">Normalisées :</strong> -0.25 D sous votre prescription pleine. Apportent un blur horizon utile pour l'Active Focus.</li>
+          <li><strong style="color: var(--sun-soft);">Validez avec votre optométriste</strong> avant de commander. Ces calculs sont indicatifs, pas une prescription médicale.</li>
+          <li><strong style="color: var(--sun-soft);">Réductions futures :</strong> tous les 3-6 mois, si vos mesures cm s'améliorent, réduisez la sphère de 0.25 D supplémentaire.</li>
+          <li><strong style="color: var(--sun-soft);">Cylindre conservé :</strong> contrairement à la sphère, le cylindre (astigmatisme) ne se réduit généralement pas avec la pratique. Conservez-le tel quel.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ OUTDOOR ============ -->
+    <section class="view" id="view-outdoor">
+      <h1>Temps <em>extérieur</em></h1>
+      <p class="subtitle">Le levier #1 de la méthode EndMyopia : 2 à 3 heures de vision distance par jour, idéalement à la lumière naturelle. C'est ce qui stimule la régression de l'élongation oculaire (cause principale de la myopie).</p>
+
+      <div class="card">
+        <div class="outdoor-display">
+          <div id="outdoorMode" style="font-size: 13px; letter-spacing: 2px; color: var(--sun); text-transform: uppercase; margin-bottom: 16px;">Session arrêtée</div>
+          <div class="outdoor-clock" id="outdoorClock">00:00:00</div>
+          <div class="outdoor-target" id="outdoorTarget">Objectif aujourd'hui : 2h00</div>
+          <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 24px;">
+            <button class="btn btn-nature" id="outdoorStartBtn" onclick="outdoorToggle()">▶ Démarrer</button>
+            <button class="btn btn-ghost" onclick="outdoorReset()">↺ Réinitialiser</button>
+            <button class="btn btn-ghost" onclick="outdoorAddManual()">+ Ajouter manuellement</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3" style="margin-top: 24px;">
+        <div class="card outdoor-cumul">
+          <div class="num" id="outdoorTodayCumul">0h00</div>
+          <div class="lbl">Aujourd'hui</div>
+        </div>
+        <div class="card outdoor-cumul">
+          <div class="num" id="outdoorWeekCumul">0h00</div>
+          <div class="lbl">Cette semaine</div>
+        </div>
+        <div class="card outdoor-cumul">
+          <div class="num" id="outdoorAvgCumul">0h00</div>
+          <div class="lbl">Moyenne / jour</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 24px;">
+        <h3>💡 Comment maximiser le bénéfice</h3>
+        <ul style="color: var(--ink-soft); padding-left: 22px; margin-top: 10px; line-height: 1.85;">
+          <li><strong style="color: var(--sun-soft);">Sans lunettes si possible.</strong> Ou avec vos lunettes normalisées (sous-corrigées de 0.25D), pour activer l'Active Focus naturellement.</li>
+          <li><strong style="color: var(--sun-soft);">Regard porté loin.</strong> Pas le téléphone en marchant. Scannez l'horizon, lisez les panneaux au loin.</li>
+          <li><strong style="color: var(--sun-soft);">Lumière du jour direct.</strong> 10 000-100 000 lux dehors vs 500 lux en intérieur. La luminosité elle-même protège (étude Rose 2008).</li>
+          <li><strong style="color: var(--sun-soft);">Fractionnable.</strong> 2 × 1h, ou 4 × 30min, ou même 12 × 10min. Le total cumulé compte plus que la continuité.</li>
+          <li><strong style="color: var(--sun-soft);">Activité distante.</strong> Marche, course, vélo, sport collectif, observation oiseaux/paysage. Tout ce qui force le regard à voyager.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PAUSE TIMER ============ -->
+    <section class="view" id="view-pause">
+      <h1>Pauses <em>oculaires</em></h1>
+      <p class="subtitle">Méthode EndMyopia : plutôt qu'un 20-20-20 classique (peu efficace selon la doctrine), une vraie pause distance (~1 heure) tous les 3 heures de travail proche. Mieux pour la rééducation, plus simple à respecter.</p>
+
+      <div class="card">
+        <div class="outdoor-display">
+          <div class="pause-mode-indicator" id="pauseMode">Phase travail proche</div>
+          <div class="outdoor-clock" id="pauseClock">3:00:00</div>
+          <div class="outdoor-target" id="pauseTarget">Travail proche → puis pause distance d'1 heure</div>
+          <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 24px;">
+            <button class="btn" id="pauseStartBtn" onclick="pauseToggle()">▶ Démarrer</button>
+            <button class="btn btn-ghost" onclick="pauseSwitch()">⇄ Passer à l'autre phase</button>
+            <button class="btn btn-ghost" onclick="pauseReset()">↺ Réinitialiser</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top: 24px;">
+        <div class="card">
+          <h3>🖥 Phase « travail proche »</h3>
+          <p style="color: var(--ink-soft); font-size: 14px; margin-top: 8px; line-height: 1.6;">
+            <strong style="color: var(--sun-soft);">Durée :</strong> jusqu'à 3 heures continues<br>
+            <strong style="color: var(--sun-soft);">Conditions :</strong> lunettes différentielles (sous-corrigées pour la distance écran), texte à la bonne distance, lumière confortable.<br>
+            <strong style="color: var(--sun-soft);">Astuce :</strong> placez votre écran le plus loin possible (60-80 cm pour ordinateur, 35-45 cm pour téléphone).
+          </p>
+        </div>
+        <div class="card">
+          <h3>🌳 Phase « pause distance »</h3>
+          <p style="color: var(--ink-soft); font-size: 14px; margin-top: 8px; line-height: 1.6;">
+            <strong style="color: var(--nature-soft);">Durée :</strong> ~1 heure (vraie pause complète)<br>
+            <strong style="color: var(--nature-soft);">Activités :</strong> marche extérieure, sport, conversation en personne, tâches manuelles. PAS de retour à l'écran.<br>
+            <strong style="color: var(--nature-soft);">Pourquoi :</strong> votre muscle ciliaire (qui accommode pour la vision proche) se relâche complètement. C'est ce relâchement qui inverse la spirale myopisante.
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 24px;">
+        <h3>📊 Sessions de la semaine</h3>
+        <div id="pauseHistory" style="margin-top: 14px;">
+          <p style="color: var(--ink-mute); font-style: italic; text-align: center; padding: 16px;">Aucune session terminée encore.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACTIVE FOCUS ============ -->
+    <section class="view" id="view-active">
+      <h1>Guide <em>Active Focus</em></h1>
+      <p class="subtitle">L'exercice central de la méthode : trouver le « blur horizon » (point juste à la limite du flou), puis entraîner votre cerveau à le clarifier consciemment. Cette micro-clarification est l'Active Focus. Comptez environ 1 mois de pratique quotidienne pour le ressentir clairement.</p>
+
+      <div class="card">
+        <h3>Exercice guidé (5 minutes)</h3>
+        <p style="color: var(--ink-soft); font-size: 14px; margin: 6px 0 18px;">Suivez les 5 étapes ci-dessous, à votre rythme. Le timer est facultatif — il propose 1 minute par étape.</p>
+
+        <div id="afStepsList"></div>
+
+        <div class="af-timer" id="afTimer">5:00</div>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn" id="afStartBtn" onclick="afToggle()">▶ Démarrer l'exercice</button>
+          <button class="btn btn-ghost" onclick="afReset()">↺ Réinitialiser</button>
+          <button class="btn btn-sky" onclick="afNextStep()">⏭ Étape suivante</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 24px;">
+        <h3>📝 Vos observations</h3>
+        <p style="color: var(--ink-soft); font-size: 13px; margin: 6px 0 14px;">Après chaque session, notez ce que vous avez ressenti. La pratique de l'Active Focus est subtile — votre journal vous aide à reconnaître quand ça « clique ».</p>
+        <div class="form-row">
+          <textarea id="afObservation" placeholder="Avez-vous ressenti la micro-clarification ? Sur quel objet ? À quelle distance ? Combien de temps avant fatigue ?"></textarea>
+        </div>
+        <button class="btn btn-sky" onclick="saveAfSession()">✓ Enregistrer la session</button>
+      </div>
+
+      <div class="card" style="margin-top: 24px;">
+        <h3>💡 Reconnaître l'Active Focus</h3>
+        <ul style="color: var(--ink-soft); padding-left: 22px; margin-top: 10px; line-height: 1.85;">
+          <li><strong style="color: var(--sun-soft);">Sensation de relâchement.</strong> Le muscle ciliaire (autour du cristallin) se détend, comme un muscle qui sort d'une crampe.</li>
+          <li><strong style="color: var(--sun-soft);">Micro-clarification.</strong> Le texte ou l'objet flou devient brièvement plus net (1-3 secondes), puis re-flou.</li>
+          <li><strong style="color: var(--sun-soft);">Pas un effort.</strong> Si vous forcez, ce n'est pas l'Active Focus — c'est la sur-accommodation, qui empire les choses.</li>
+          <li><strong style="color: var(--sun-soft);">Cligner aide.</strong> Un cligenement lent souvent déclenche la clarification.</li>
+          <li><strong style="color: var(--sun-soft);">Patience.</strong> Vous ne le sentirez peut-être pas avant 2-4 semaines. C'est normal — votre cerveau réapprend une compétence oubliée.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ EYE EXERCISES ============ -->
+    <section class="view" id="view-exercises">
+      <div id="exercisesHome">
+        <h1>Exercices <em>oculaires</em></h1>
+        <p class="subtitle">8 exercices complémentaires à la méthode EndMyopia. Certains sont validés cliniquement (convergence, accommodation), d'autres relèvent de l'hygiène visuelle (clignement, palming). Faites-en 2-4 par jour, 5-15 minutes au total — pas plus, la fatigue oculaire devient contre-productive.</p>
+
+        <div class="grid grid-3" style="margin-bottom: 24px;">
+          <div class="card stat-card"><div class="stat-num" id="exTodayCount">0</div><div class="stat-label">Sessions aujourd'hui</div></div>
+          <div class="card stat-card"><div class="stat-num" id="exWeekCount">0</div><div class="stat-label">Sessions cette semaine</div></div>
+          <div class="card stat-card"><div class="stat-num" id="exTotalCount">0</div><div class="stat-label">Total cumulé</div></div>
+        </div>
+
+        <h2 style="margin-bottom: 16px;">Choisir un exercice</h2>
+        <div class="grid grid-2" id="exercisesList"></div>
+
+        <div class="card" style="margin-top: 24px;">
+          <h3>💡 Recommandations d'usage</h3>
+          <ul style="color: var(--ink-soft); padding-left: 22px; margin-top: 10px; line-height: 1.85;">
+            <li><strong style="color: var(--sun-soft);">Quotidiens :</strong> clignement complet (1×), palming (1-2×), near-far focus (1-2×).</li>
+            <li><strong style="color: var(--sun-soft);">3-4 fois par semaine :</strong> saccades, smooth pursuit, convergence, vision périphérique.</li>
+            <li><strong style="color: var(--sun-soft);">Pas d'enchaînement intense.</strong> 2-3 exercices par session max, espacés dans la journée.</li>
+            <li><strong style="color: var(--sun-soft);">Si fatigue ou douleur :</strong> arrêtez immédiatement. Les exercices doivent détendre, jamais forcer.</li>
+            <li><strong style="color: var(--sun-soft);">Complément, pas substitut :</strong> ces exercices ne remplacent pas le temps extérieur (levier #1) ni l'Active Focus.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="exerciseGuided" style="display:none;">
+        <button class="module-back" onclick="exitExercise()">← retour aux exercices</button>
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap;">
+            <div>
+              <div style="font-size: 11px; letter-spacing: 2px; color: var(--sun); text-transform: uppercase; margin-bottom: 6px;" id="exGuideMeta">—</div>
+              <h2 id="exGuideName">—</h2>
+              <p style="color: var(--ink-soft); font-size: 14px; max-width: 600px;" id="exGuideWhat">—</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 28px; padding: 24px; background: linear-gradient(135deg, rgba(232, 181, 60, 0.18), rgba(107, 168, 216, 0.10)); border-radius: 14px; border: 1px solid var(--sun);">
+            <div style="font-size: 11px; letter-spacing: 2px; color: var(--sun); text-transform: uppercase; margin-bottom: 8px;" id="exStepLabel">Étape 1 / 1</div>
+            <h3 id="exStepTitle">—</h3>
+            <p style="color: var(--ink-soft); font-size: 15px; margin-top: 8px; line-height: 1.6;" id="exStepDesc">—</p>
+            <div class="af-timer" id="exTimer" style="font-size: 60px; margin: 18px 0;">00:00</div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <button class="btn" id="exStartBtn" onclick="exToggle()">▶ Démarrer</button>
+              <button class="btn btn-ghost" onclick="exNextStep()">⏭ Étape suivante</button>
+              <button class="btn btn-ghost" onclick="exReset()">↺ Réinitialiser</button>
+            </div>
+          </div>
+
+          <div style="margin-top: 22px;" id="exProgressBlock">
+            <div style="font-size: 12px; letter-spacing: 1.5px; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 10px;">Toutes les étapes</div>
+            <div id="exAllSteps"></div>
+          </div>
+
+          <div style="margin-top: 22px; padding: 18px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+            <div style="font-size: 11px; letter-spacing: 1.5px; color: var(--sky); text-transform: uppercase; margin-bottom: 8px;">📚 Base scientifique</div>
+            <p style="color: var(--ink-soft); font-size: 13px; line-height: 1.55;" id="exGuideBasis">—</p>
+            <div style="font-size: 11px; letter-spacing: 1.5px; color: var(--sun-soft); text-transform: uppercase; margin-top: 14px; margin-bottom: 6px;">⏰ Fréquence recommandée</div>
+            <p style="color: var(--ink-soft); font-size: 13px;" id="exGuideFreq">—</p>
+          </div>
+
+          <div style="margin-top: 22px;">
+            <h3>📝 Observations (optionnel)</h3>
+            <div class="form-row" style="margin-top: 10px;">
+              <textarea id="exObs" placeholder="Sensation après l'exercice, fatigue, détente, difficulté..."></textarea>
+            </div>
+            <button class="btn btn-sky" onclick="completeExercise()">✓ Marquer comme fait</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MODULES ============ -->
+    <section class="view" id="view-modules">
+      <div id="modulesHome">
+        <h1>Les 10 <em>principes</em></h1>
+        <p class="subtitle">Les fondements de la méthode EndMyopia, expliqués simplement. À lire dans l'ordre, ou par sujet selon vos questions.</p>
+        <div class="grid" id="modulesList"></div>
+      </div>
+      <div class="card module-detail" id="moduleDetail"></div>
+    </section>
+
+    <!-- ============ PROTOCOLS ============ -->
+    <section class="view" id="view-protocols">
+      <h1><em>Protocoles</em> quotidiens</h1>
+      <p class="subtitle">Trois routines concrètes pour intégrer la méthode dans votre journée — sans bouleverser votre vie. Le secret : la régularité sur des mois, pas l'intensité ponctuelle.</p>
+      <div id="protocolsList"></div>
+    </section>
+
+    <!-- ============ JOURNAL ============ -->
+    <section class="view" id="view-journal">
+      <h1>Journal de <em>vision</em></h1>
+      <p class="subtitle">Tracez vos observations subjectives au fil des mois : netteté ressentie, fatigue oculaire, mal de tête, sensations d'Active Focus. Ces détails échappent aux mesures chiffrées mais comptent énormément pour ajuster votre pratique.</p>
+
+      <div class="card" style="margin-bottom: 22px;">
+        <div class="form-row">
+          <label>Aujourd'hui dans ma pratique vision…</label>
+          <textarea id="journalText" placeholder="Une observation, un changement, un succès, un blocage, une question pour l'optométriste, une sensation pendant l'Active Focus..."></textarea>
+        </div>
+        <button class="btn" onclick="addJournal()">＋ Inscrire dans le journal</button>
+      </div>
+      <div id="journalList"></div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast">Action enregistrée</div>
+
+<script>
+const STORAGE_KEY = 'lartdelavisionnaturelle_v1';
+function freshState() {
+  return {
+    startDate: new Date().toISOString().slice(0,10),
+    measures: [],
+    snellenTests: [],
+    prescriptions: [],
+    outdoorSessions: [],
+    outdoorRunning: false, outdoorStartTime: null,
+    pauseSessions: [],
+    pauseRunning: false, pausePhase: 'work', pauseRemaining: 3*3600, pauseStartTime: null,
+    afSessions: [],
+    exSessions: [],
+    journal: [],
+    modulesRead: [],
+    streak: 0,
+    lastActivityDate: null,
+    points: 0
+  };
+}
+let state;
+try {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  state = raw ? JSON.parse(raw) : freshState();
+  if (!state || typeof state !== 'object') state = freshState();
+  if (!Array.isArray(state.measures)) state.measures = [];
+  if (!Array.isArray(state.snellenTests)) state.snellenTests = [];
+  if (!Array.isArray(state.prescriptions)) state.prescriptions = [];
+  if (!Array.isArray(state.outdoorSessions)) state.outdoorSessions = [];
+  if (!Array.isArray(state.pauseSessions)) state.pauseSessions = [];
+  if (!Array.isArray(state.afSessions)) state.afSessions = [];
+  if (!Array.isArray(state.exSessions)) state.exSessions = [];
+  if (!Array.isArray(state.journal)) state.journal = [];
+  if (!Array.isArray(state.modulesRead)) state.modulesRead = [];
+  if (typeof state.points !== 'number') state.points = 0;
+  if (typeof state.streak !== 'number') state.streak = 0;
+  if (!state.startDate) state.startDate = new Date().toISOString().slice(0,10);
+} catch(e) { state = freshState(); }
+function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} refreshDashboard(); }
+
+function escapeHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function toast(t) { const el = document.getElementById('toast'); el.textContent = t; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2200); }
+function fmtTime(s) {
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  if (h > 0) return `${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+function fmtHM(s) {
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  return `${h}h${String(m).padStart(2,'0')}`;
+}
+function todayStr() { return new Date().toISOString().slice(0,10); }
+
+const modules = [
+  { id: 'v1', n: 'I', title: "La myopie n'est pas (que) génétique", duration: "6 min",
+    teaser: "L'explosion de la myopie en 50 ans n'est pas due aux gènes. Le mode de vie moderne (vie en intérieur, écrans) joue un rôle majeur.",
+    sections: [
+      { h: "Le constat", p: "Dans les années 1960, environ 25% des Américains et Européens étaient myopes. Aujourd'hui, plus de 50% le sont — et jusqu'à 80-90% chez les jeunes adultes urbains en Asie de l'Est. Les gènes humains n'ont pas changé en deux générations. Ce qui a changé : notre environnement visuel. Beaucoup plus de temps en intérieur, beaucoup plus d'écrans à courte distance, beaucoup moins d'exposition à la lumière naturelle." },
+      { h: "Ce que dit la recherche moderne", ul: [
+        "<strong>Étude Rose et al. (2008)</strong> : les enfants qui passent plus de 14h/semaine en extérieur ont un risque de myopie 3× plus faible.",
+        "<strong>Études Taïwan (2013-2020)</strong> : 80 minutes de récréation extérieure obligatoire/jour ont fait baisser l'incidence de la myopie de 50% en quelques années dans les écoles testées.",
+        "<strong>Méta-analyses récentes</strong> : la lumière naturelle (10 000-100 000 lux) stimule la libération de dopamine rétinienne, qui régule la croissance de l'œil.",
+        "<strong>Conclusion</strong> : la part environnementale est réelle, mesurable, et donc partiellement réversible."
+      ]},
+      { h: "Ce que ça change", p: "Si une partie de la myopie est acquise par habitudes, elle est en théorie partiellement modulable par d'autres habitudes. C'est l'hypothèse de fond de la méthode EndMyopia. Attention : cela ne signifie PAS qu'on peut « guérir » toutes les myopies. Les myopies fortes (>6D) ont une composante structurelle (allongement axial) plus difficilement réversible. Les myopies légères à modérées sont les meilleures candidates." }
+    ]
+  },
+  { id: 'v2', n: 'II', title: "Le blur edge et la mesure cm", duration: "5 min",
+    teaser: "Plus précis que de se fier aux prescriptions : mesurez vous-même la distance à laquelle votre vision devient floue.",
+    sections: [
+      { h: "Le principe", p: "Le « blur edge » (point limite du flou) est la distance maximale à laquelle vous voyez un texte parfaitement net avant qu'il ne devienne flou. Cette distance, mesurée en centimètres, est directement convertible en dioptries grâce à la formule simple : <strong>D = 100 / cm</strong>. Si vous voyez nettement à 50 cm, vous avez l'équivalent de -2.00 D. Si vous voyez nettement à 25 cm, vous avez environ -4.00 D." },
+      { quote: "Mesurer en centimètres est plus précis qu'une auto-évaluation et moins biaisé qu'une prescription d'opticien (qui sur-corrige souvent de 0.25 à 0.50 D).", who: "Méthode EndMyopia" },
+      { h: "Comment mesurer correctement", ul: [
+        "<strong>Texte standardisé</strong> : taille 10-12pt, contraste noir sur blanc.",
+        "<strong>Lumière constante</strong> : toujours la même (lumière du jour ou même lampe).",
+        "<strong>Sans correction</strong> : œil nu (ou retirez vos lentilles 1h avant).",
+        "<strong>Reposé</strong> : matin, ou après une pause distance — pas après 4h d'écran.",
+        "<strong>Hebdomadaire</strong> : 1-2 fois/semaine, jamais quotidien (variations naturelles)."
+      ]},
+      { h: "Ce que la mesure révèle", p: "En suivant cette mesure dans le temps, vous voyez très précisément si votre vision s'améliore (distance qui augmente, dioptries qui diminuent), reste stable, ou s'aggrave. C'est votre tableau de bord objectif. Sans mesure, vous ne pouvez pas savoir si vos efforts paient." }
+    ]
+  },
+  { id: 'v3', n: 'III', title: "Active Focus — l'exercice central", duration: "8 min",
+    teaser: "Trouver le point juste à la limite du flou et entraîner le cerveau à le clarifier consciemment.",
+    sections: [
+      { h: "Le principe", p: "L'Active Focus est une relaxation consciente du muscle ciliaire (le muscle qui contrôle la mise au point du cristallin). Chez le myope chronique, ce muscle reste en tension permanente — c'est la « pseudo-myopie » qui se superpose à la myopie axiale. L'Active Focus apprend à relâcher ce muscle volontairement, ce qui produit immédiatement une vision plus nette (dans la zone juste au bord du flou)." },
+      { quote: "L'Active Focus n'est pas un effort. C'est un relâchement. Si vous serrez les yeux, vous faites l'inverse de ce qu'il faut.", who: "Méthode EndMyopia" },
+      { h: "Comment trouver l'Active Focus", ul: [
+        "<strong>Trouvez le blur horizon</strong> : le point juste à la limite, où le texte est légèrement flou (pas illisible, juste un poil flou).",
+        "<strong>Regardez sans forcer</strong> : laissez votre regard se poser sur le texte sans plisser les yeux.",
+        "<strong>Cligner lentement</strong> : un cligenement long souvent déclenche la clarification.",
+        "<strong>Sentir le relâchement</strong> : c'est comme une légère détente derrière les yeux. La vision devient brièvement plus nette (1-3 secondes).",
+        "<strong>Patience</strong> : la première fois prend généralement 2 à 4 semaines de pratique quotidienne pour le ressentir clairement."
+      ]},
+      { h: "Pourquoi ça marche (théorie)", p: "Le cerveau apprend (ou réapprend) à demander au muscle ciliaire de se relâcher pour mieux voir au loin. Avec la pratique répétée, cette relaxation devient automatique — et la « pseudo-myopie » diminue. Les gains immédiats sont sur cette pseudo-myopie ; les gains long terme (changement de l'élongation axiale) sont plus lents et incertains, mais existent dans certains cas selon les retours d'expérience EndMyopia." }
+    ]
+  },
+  { id: 'v4', n: 'IV', title: "Lunettes différentielles vs normalisées", duration: "7 min",
+    teaser: "Deux paires de lunettes adaptées : une pour le proche, une pour la distance. Sortir du « tout-en-un » sur-corrigé.",
+    sections: [
+      { h: "Le principe", p: "Le système actuel : on vous donne UNE prescription, censée corriger pour voir loin (20/20). Vous portez ces lunettes pour TOUT — y compris l'écran à 50 cm, alors qu'elles sont calibrées pour la vision à 6 mètres. Résultat : vous sur-accommodez en permanence, votre œil est en tension, et la myopie progresse. EndMyopia propose deux paires distinctes." },
+      { h: "Lunettes différentielles (pour le proche)", ul: [
+        "<strong>Usage</strong> : écran, lecture, tout travail à <1 mètre.",
+        "<strong>Calibrage</strong> : sous-corrigées de 1.0 à 1.5 D par rapport à votre prescription pleine.",
+        "<strong>Effet</strong> : votre œil n'a plus besoin de sur-accommoder, le muscle ciliaire se relâche pendant le travail proche.",
+        "<strong>Test</strong> : vous devez voir nettement votre écran à votre distance habituelle, avec un léger flou si vous regardez plus loin."
+      ]},
+      { h: "Lunettes normalisées (pour la distance)", ul: [
+        "<strong>Usage</strong> : extérieur, distance, conduite éventuelle (selon réglementation locale).",
+        "<strong>Calibrage</strong> : sous-corrigées de 0.25 D par rapport à votre prescription pleine.",
+        "<strong>Effet</strong> : vous avez accès à un léger « blur horizon » qui permet de pratiquer l'Active Focus pendant vos déplacements.",
+        "<strong>Réduction</strong> : tous les 3-6 mois, si vos mesures s'améliorent, vous réduisez encore de 0.25 D. Jamais plus vite."
+      ]},
+      { h: "Comment obtenir ces lunettes", p: "Demandez à votre optométriste de prescrire deux paires (différentielles et normalisées). Certains professionnels sont familiers avec cette approche, d'autres non. Vous pouvez aussi commander en ligne avec votre prescription ajustée (déduisez 1.0-1.5 D pour le proche, 0.25 D pour la distance) — mais SEULEMENT après avoir validé l'approche avec un professionnel pour les premières paires." }
+    ]
+  },
+  { id: 'v5', n: 'V', title: "Vision distance et lumière naturelle", duration: "6 min",
+    teaser: "Le levier #1, validé par la recherche : 2-3 heures de vision distance par jour, idéalement à la lumière du jour.",
+    sections: [
+      { h: "Le principe", p: "Le mécanisme est validé scientifiquement (Rose 2008, études taïwanaises 2013+) : la lumière naturelle stimule la libération de dopamine rétinienne, qui à son tour régule la croissance de l'œil et freine son élongation axiale (cause structurelle de la myopie). En parallèle, regarder loin relâche le muscle ciliaire qui se contracte pour la vision proche." },
+      { h: "Combien de temps ?", ul: [
+        "<strong>Minimum</strong> : 80 minutes par jour (seuil identifié par les études Taïwan).",
+        "<strong>Optimal</strong> : 2-3 heures par jour pour la prévention et la régression légère.",
+        "<strong>Idéal</strong> : du temps fragmenté tout au long de la journée (pas seulement le week-end).",
+        "<strong>Toute lumière compte</strong> : couvert nuageux = encore 10 000 lux (vs 500 lux en intérieur)."
+      ]},
+      { h: "Comment intégrer", ul: [
+        "<strong>Trajets pédestres</strong> : 20 min aller, 20 min retour de quelque chose.",
+        "<strong>Pause déjeuner extérieure</strong> : 30 min de marche.",
+        "<strong>Bureau près d'une fenêtre</strong> : 1-2h cumulées de regard porté loin par la fenêtre.",
+        "<strong>Sport ou loisir extérieur</strong> : course, vélo, jardinage, observation d'oiseaux.",
+        "<strong>Téléphone rangé en marchant</strong> : votre regard scanne l'horizon, pas l'écran."
+      ]},
+      { h: "L'erreur classique", p: "Faire de longues sessions sportives extérieures le week-end mais 0 minute en semaine. Le cerveau et l'œil ont besoin de la régularité quotidienne. 4×30 min/jour valent mieux que 6h le dimanche. Fragmentez." }
+    ]
+  },
+  { id: 'v6', n: 'VI', title: "Pauses : longues plutôt que fréquentes", duration: "5 min",
+    teaser: "EndMyopia propose un schéma différent du 20-20-20 : des pauses moins fréquentes mais beaucoup plus longues.",
+    sections: [
+      { h: "Le principe", p: "Le 20-20-20 (toutes les 20 min, regarder à 20 pieds pendant 20 sec) est l'argument le plus connu pour les pauses oculaires. EndMyopia considère que ces micro-pauses sont insuffisantes : 20 secondes ne permettent pas un vrai relâchement du muscle ciliaire. La proposition alternative : des pauses moins fréquentes (toutes les 2-3 heures) mais beaucoup plus longues (30 min à 1 heure de vraie vision distance)." },
+      { h: "Schéma EndMyopia", ul: [
+        "<strong>Travail proche : 2-3 h</strong> continues (avec lunettes différentielles).",
+        "<strong>Pause distance : 30-60 min</strong> de vraie vision lointaine, idéalement extérieur.",
+        "<strong>Reprendre</strong> : 2-3 h supplémentaires de travail proche.",
+        "<strong>Total journée</strong> : 2-3 sessions de travail + 2-3 sessions de pause distance."
+      ]},
+      { h: "Pourquoi cela marche mieux", p: "Le muscle ciliaire (qui s'accommode pour la vision proche) ne se relâche complètement qu'après plusieurs minutes de regard lointain. 20 secondes le « titille » ; 30 minutes le « libère ». De plus, les longues pauses sont psychologiquement plus tenables : le 20-20-20 est interrompu et oublié dans 90% des cas, alors qu'une vraie pause-déjeuner-marche est facile à intégrer." },
+      { h: "Adapter au télétravail", p: "Si vous travaillez sur écran 8h/jour, prévoyez 2 vraies pauses : matin (30-60 min de marche extérieure) et midi (1h de pause-déjeuner-promenade). Cela vous donne 1.5-2h de vision distance directement intégrées à votre journée de travail." }
+    ]
+  },
+  { id: 'v7', n: 'VII', title: "La distance d'écran et l'éclairage", duration: "5 min",
+    teaser: "Loin du visage, bien éclairé. Les deux conditions de base pour ne pas aggraver le problème.",
+    sections: [
+      { h: "Le principe", p: "Plus vous tenez votre écran ou votre livre près du visage, plus votre œil sur-accommode pour focaliser à courte distance — et plus vous renforcez la spirale myopisante. La distance optimale dépend de l'écran : 60-80 cm pour un ordinateur, 35-45 cm pour un téléphone, 30-40 cm pour un livre. La plupart des gens sont 20-30% trop près." },
+      { h: "Comment optimiser la distance", ul: [
+        "<strong>Ordinateur</strong> : reculer l'écran le plus loin possible (60-80 cm). Augmenter la taille du texte plutôt que de rapprocher.",
+        "<strong>Téléphone</strong> : à bras tendu si possible (40-50 cm). Augmenter la taille de police.",
+        "<strong>Lecture</strong> : tenir le livre à 30-40 cm, posture droite.",
+        "<strong>Vérifier régulièrement</strong> : la fatigue fait rapprocher inconsciemment. Repérez et corrigez."
+      ]},
+      { h: "Importance de l'éclairage", ul: [
+        "<strong>Luminosité ambiante</strong> : pas d'écran dans le noir (contraste pupillaire) ni en plein soleil direct (reflets).",
+        "<strong>Source lumineuse derrière vous</strong>, pas devant (évite l'éblouissement).",
+        "<strong>Lampe d'appoint pour la lecture</strong> : éclaire le livre sans contre-jour.",
+        "<strong>Mode sombre des écrans le soir</strong> : moins de luminosité, moins de fatigue accommodative."
+      ]},
+      { h: "L'erreur classique", p: "Travailler le soir avec un écran ultra-lumineux dans une pièce sombre. Vos pupilles s'ouvrent en grand pour la pièce sombre, mais l'écran les ferait préférer se fermer — résultat : tension permanente. Solution : garder une lumière d'ambiance modérée (lampe d'appoint) ou réduire la luminosité de l'écran." }
+    ]
+  },
+  { id: 'v8', n: 'VIII', title: "Réduction par paliers (0.25 D max)", duration: "6 min",
+    teaser: "L'amélioration ne se précipite pas. Réductions de 0.25 D, jamais plus, espacées de 3-6 mois.",
+    sections: [
+      { h: "Le principe", p: "Quand vos mesures cm montrent une amélioration stable (sur 6-8 semaines), vous pouvez envisager de réduire la prescription de votre prochaine paire de lunettes normalisées. Règle d'or : <strong>réduire de 0.25 dioptrie maximum à la fois</strong>, et attendre 3-6 mois entre chaque réduction. Réduire plus vite ne donne pas de meilleurs résultats — au contraire, ça peut stagner ou provoquer une régression." },
+      { h: "Pourquoi 0.25 D et pas plus", ul: [
+        "<strong>Le cerveau s'adapte</strong> : il faut plusieurs semaines pour qu'il accepte la nouvelle vision floue et active l'Active Focus dessus.",
+        "<strong>Sécurité</strong> : trop de blur d'un coup = sur-accommodation compensatoire = pseudo-myopie aggravée.",
+        "<strong>Rythme biologique</strong> : la croissance/régression de l'œil est un processus lent, structurel.",
+        "<strong>Confort de vie</strong> : 0.25 D est gérable au quotidien ; 0.50 D ou 0.75 D rend la conduite et le travail difficiles."
+      ]},
+      { h: "Quand réduire ?", p: "Les mesures cm montrent une amélioration stable de ~5 cm (= ~0.25 D) sur 6-8 semaines. Avec vos lunettes normalisées actuelles, vous voyez maintenant 20/20 confortablement (le blur horizon est plus loin). Vous avez toujours 2-3h/jour de vision distance et pratiquez l'Active Focus régulièrement." },
+      { h: "Comment réduire en pratique", ul: [
+        "<strong>Commandez une nouvelle paire normalisée</strong> avec -0.25 D de moins.",
+        "<strong>Portez-la d'abord en soirée</strong> (luminosité moindre, vision moins critique) pour adapter.",
+        "<strong>Augmentez progressivement</strong> jusqu'à porter cette nouvelle paire toute la journée.",
+        "<strong>Conservez l'ancienne paire</strong> pour les conditions difficiles (conduite de nuit, etc.).",
+        "<strong>Attendez 3-6 mois</strong> avant de réduire encore."
+      ]}
+    ]
+  },
+  { id: 'v9', n: 'IX', title: "Patience : c'est lent (et c'est normal)", duration: "5 min",
+    teaser: "Les myopies se sont construites en années. Leur amélioration prend des années aussi. Pas des semaines.",
+    sections: [
+      { h: "Le principe", p: "L'attente la plus dangereuse est celle des résultats rapides. EndMyopia n'est pas un programme « 30 jours ». C'est un changement d'habitudes long terme, dont les effets se mesurent en mois et années. Les retours d'expérience typiques : 0.25-0.50 D d'amélioration la première année, 0.5-1 D la deuxième, plateau ou amélioration plus lente après." },
+      { quote: "Si quelqu'un vous promet -2 D de réduction en 3 mois, fuyez. La biologie oculaire ne fonctionne pas comme ça.", who: "Communauté EndMyopia" },
+      { h: "Calendrier réaliste", ul: [
+        "<strong>Semaines 1-4</strong> : apprentissage de la mesure et des principes. Première sensation d'Active Focus possible (ou pas — patience).",
+        "<strong>Mois 2-3</strong> : Active Focus reconnu. Habitudes (extérieur, pauses) installées.",
+        "<strong>Mois 4-6</strong> : premiers gains mesurables (cm augmentent). Première réduction normalisée envisageable.",
+        "<strong>Année 1</strong> : 0.25-0.75 D d'amélioration typique selon assiduité et myopie de départ.",
+        "<strong>Années 2-5</strong> : amélioration progressive, plateau possible, ajustements continus."
+      ]},
+      { h: "Pourquoi ça vaut quand même la peine", p: "Même sans réduction massive de la myopie, les bénéfices sont réels : moins de fatigue oculaire, moins de mal de tête, meilleure concentration, plus de temps extérieur (qui apporte santé physique et mentale), conscience accrue de l'usage des écrans. Les gains de qualité de vie sont presque immédiats, indépendamment des dioptries." },
+      { h: "Le piège opposé", p: "La patience qui devient résignation. Si après 12 mois de pratique sérieuse vous n'avez aucun gain mesurable, c'est qu'il y a un problème — soit dans la pratique (pas assez d'extérieur, pas d'Active Focus, mauvais calibrage des lunettes), soit dans votre cas (myopie axiale forte). Ré-évaluez avec un professionnel." }
+    ]
+  },
+  { id: 'v10', n: 'X', title: "Quand consulter — et que dire au professionnel", duration: "6 min",
+    teaser: "EndMyopia ne remplace pas le suivi médical. Apprenez à dialoguer avec votre optométriste / ophtalmologue.",
+    sections: [
+      { h: "Le principe", p: "EndMyopia est un cadre d'auto-éducation et de pratique personnelle. Il ne remplace JAMAIS le suivi médical par un professionnel. Le professionnel détecte les pathologies (décollement de rétine, glaucome, cataracte, dégénérescence maculaire), prescrit légalement les corrections, et reste votre filet de sécurité. La pratique EndMyopia se fait EN PARALLÈLE de ce suivi, pas à sa place." },
+      { h: "Quand consulter en urgence", ul: [
+        "<strong>Mouches volantes nouvelles ou augmentées</strong> (corps flottants).",
+        "<strong>Éclairs lumineux dans le champ visuel</strong> (phosphènes).",
+        "<strong>Voile sombre ou ombre dans le champ visuel</strong>.",
+        "<strong>Perte brutale de vision</strong>, totale ou partielle.",
+        "<strong>Douleur oculaire intense</strong>, surtout avec rougeur.",
+        "<strong>Halos colorés autour des lumières</strong>."
+      ]},
+      { h: "Suivi de routine", p: "1 examen complet par an minimum (fond d'œil, tension oculaire, mesure de la prescription). Plus fréquent si myopie forte (>6D) ou pathologie connue." },
+      { h: "Comment parler de votre pratique", ul: [
+        "<strong>Mentionnez votre démarche</strong> sans confrontation : « Je teste une approche d'habitudes visuelles, j'aimerais des lunettes différentielles pour le travail proche ».",
+        "<strong>Apportez vos mesures cm</strong> — données concrètes, pas dogme.",
+        "<strong>Acceptez le scepticisme</strong> : la médecine conventionnelle ne valide pas EndMyopia. C'est légitime.",
+        "<strong>Cherchez un professionnel ouvert</strong> : certains optométristes (notamment myopia management) sont familiers avec les approches comportementales.",
+        "<strong>Ne falsifiez jamais une prescription</strong> pour conduire ou travailler — c'est dangereux et illégal."
+      ]},
+      { h: "Le bon état d'esprit", p: "Vous êtes votre propre principal témoin de vos progrès. Le professionnel apporte la sécurité médicale et la prescription légale. EndMyopia apporte la pratique quotidienne. Les trois travaillent ensemble — pas l'un contre les autres. Si votre optométriste refuse catégoriquement de prescrire des différentielles, cherchez un second avis professionnel plutôt que de bricoler seul." }
+    ]
+  }
+];
+
+const protocols = [
+  { type: "Routine matinale", title: "Démarrer la journée avec la vision",
+    desc: "20-30 minutes au réveil pour exposer vos yeux à la lumière naturelle et activer le système visuel pour la journée.",
+    steps: [
+      { title: "Exposition lumière naturelle (10 min)", desc: "Sortez sur un balcon, dans un jardin, ou marchez jusqu'au coin de la rue. Sans lunettes de soleil. Cette lumière naturelle stimule la dopamine rétinienne et règle l'horloge biologique.", time: "10 min" },
+      { title: "Mesure cm hebdomadaire (si jour de mesure)", desc: "Une fois par semaine, faites votre mesure cm le matin (yeux reposés). Notez dans l'app. Pas plus souvent — les variations jour-à-jour ne sont pas significatives.", time: "2 min" },
+      { title: "Lecture matinale au loin", desc: "Si vous avez l'habitude de lire au réveil : faites-le sur papier (pas écran), à bonne distance (40 cm), idéalement près d'une fenêtre.", time: "10-20 min" },
+      { title: "Préparer ses lunettes pour la journée", desc: "Différentielles à portée de main pour le bureau / écran. Normalisées sur le nez pour la sortie.", time: "1 min" }
+    ]
+  },
+  { type: "Routine de travail (écran)", title: "Le cycle 3h travail / 1h pause distance",
+    desc: "Schéma EndMyopia (alternative au 20-20-20) : sessions longues de travail + vraies pauses extérieures.",
+    steps: [
+      { title: "Mettre les lunettes différentielles", desc: "Avant chaque session de travail proche. Vérifier que l'écran est à 60-80 cm.", time: "—" },
+      { title: "Lancer le timer pause", desc: "Dans l'app : démarrer la phase « travail proche » (3h). Vous serez alerté à la fin.", time: "3 h" },
+      { title: "Travailler en monotâche", desc: "Téléphone hors de vue. Notifications coupées. Posture droite. Cligner régulièrement (le travail écran réduit le clignement de 60%).", time: "3 h" },
+      { title: "Pause distance d'1 heure", desc: "Marche extérieure idéalement. Lunettes normalisées. Regard porté loin. Pas d'écran. Conversations en personne, observation, sport léger.", time: "1 h" },
+      { title: "Reprendre le cycle", desc: "Une 2e session de 3h + 1h de pause si la journée le permet. Maximum 2-3 cycles complets/jour.", time: "—" }
+    ]
+  },
+  { type: "Routine du soir", title: "Préparer la récupération oculaire",
+    desc: "30-45 minutes en fin de journée pour relâcher la tension accumulée et préparer le sommeil — phase principale de récupération oculaire.",
+    steps: [
+      { title: "Pratique Active Focus (5-10 min)", desc: "Une session calme à la lumière douce du soir. Texte à votre blur horizon, sans forcer. Cligner. Sentir le relâchement.", time: "5-10 min" },
+      { title: "Marche extérieure ou observation", desc: "Si possible : 20-30 min de marche au crépuscule. Sinon : 10 min à la fenêtre, regard porté loin.", time: "20-30 min" },
+      { title: "Couper les écrans (60 min avant le coucher)", desc: "La lumière bleue tardive perturbe le sommeil et donc la récupération oculaire. Si écran obligatoire : mode nuit + faible luminosité.", time: "Continu" },
+      { title: "Lecture papier en lumière douce", desc: "Lampe d'appoint, livre à bonne distance. Sans lunettes si possible (vous lisez à courte distance, donc pas besoin de correction).", time: "15-20 min" },
+      { title: "Journal (1 ligne minimum)", desc: "Une observation rapide sur votre vision aujourd'hui : netteté ressentie, fatigue, succès Active Focus, blocage. Ces traces s'accumulent en sagesse de pratique.", time: "2 min" }
+    ]
+  },
+  { type: "Routine hebdomadaire", title: "Le bilan du dimanche",
+    desc: "20-30 minutes une fois par semaine pour faire le point, ajuster, et planifier la semaine suivante.",
+    steps: [
+      { title: "Mesure cm (matin reposé)", desc: "Votre mesure de référence de la semaine. Toujours dans les mêmes conditions pour comparer.", time: "5 min" },
+      { title: "Bilan extérieur", desc: "Combien d'heures cumulées cette semaine ? Êtes-vous au-dessus de 14h (= 2h/jour moyen) ? Sinon, comment ajuster la semaine suivante ?", time: "5 min" },
+      { title: "Bilan Active Focus", desc: "Combien de sessions cette semaine ? Avez-vous senti la clarification ? Si oui sur quel objet/distance ? Si non depuis 2-3 semaines, posez-vous la question : pratiquez-vous vraiment au blur horizon, ou trop ou pas assez ?", time: "5 min" },
+      { title: "Ajustements éventuels", desc: "Faut-il changer de paire de lunettes (si gains soutenus depuis 6 mois) ? Faut-il consulter un professionnel ? Faut-il chercher un nouveau créneau extérieur dans la semaine ?", time: "5 min" },
+      { title: "Planification semaine suivante", desc: "Notez 1-2 ajustements concrets pour les 7 jours à venir. Pas plus — la régularité bat l'ambition dans cette discipline.", time: "5 min" }
+    ]
+  }
+];
+
+const afSteps = [
+  { title: "Préparer son texte au blur horizon",
+    desc: "Prenez un livre ou imprimez un texte (taille 10-12pt). Tenez-le à la distance où il est juste à la limite du flou — pas illisible, juste un poil flou. Pour la plupart des myopes : 5-15 cm au-delà de la distance où le texte est parfaitement net." },
+  { title: "Se relaxer (et ne PAS plisser les yeux)",
+    desc: "Posture droite, épaules relâchées, mâchoires détendues. Si vous plissez ou serrez vos paupières, vous faites l'inverse de l'Active Focus. La sensation à viser est celle d'un regard ouvert, doux, sans tension. Respirez calmement." },
+  { title: "Cligner lentement et longuement",
+    desc: "Fermez les yeux 1-2 secondes (un long cligenement). Rouvrez-les en regardant le texte. Souvent, à ce moment précis, le texte apparaît plus net pendant 1-3 secondes. C'est l'Active Focus qui se manifeste — savourez ce micro-moment de clarté." },
+  { title: "Sentir le relâchement",
+    desc: "Si la clarification se produit : essayez de sentir d'OÙ elle vient (souvent : une légère détente derrière les yeux, comme un muscle qui sort de tension). Si rien ne se passe : pas grave, c'est normal au début. La sensation prend 2-4 semaines de pratique quotidienne pour devenir reconnaissable." },
+  { title: "Ne pas s'épuiser — arrêter quand fatigué",
+    desc: "L'Active Focus se pratique 5-10 minutes par session, plusieurs fois par jour. PAS 30 minutes d'affilée — la fatigue oculaire devient contre-productive. Mieux vaut 5 sessions courtes de 5 min réparties dans la journée qu'une longue session forcée. Notez vos observations dans l'app après l'exercice." }
+];
+
+const DEFAULT_TITLE = "L'Art de la Vision Naturelle — Méthode EndMyopia adaptée";
+
+function refreshDashboard() {
+  // Last measure
+  const last = state.measures.length ? state.measures[state.measures.length - 1] : null;
+  const el = document.getElementById('statCurrentDiopter');
+  if (el) el.textContent = last ? '-' + last.diopter.toFixed(2) : '—';
+  // Outdoor today
+  const today = todayStr();
+  const todaySec = state.outdoorSessions.filter(s => s.date.slice(0,10) === today).reduce((a,s) => a + s.duration, 0);
+  document.getElementById('statOutdoorToday').textContent = fmtHM(todaySec);
+  // Streak
+  document.getElementById('statStreak').textContent = state.streak;
+  // AF sessions
+  document.getElementById('statSessions').textContent = state.afSessions.length;
+  // Global progress
+  const pct = Math.min(100, Math.round((state.measures.length * 5 + state.outdoorSessions.length * 2 + state.afSessions.length * 3 + state.modulesRead.length * 5) / 2));
+  document.getElementById('globalProgress').style.width = pct + '%';
+  document.getElementById('globalStats').textContent = `${state.measures.length} mesures · ${state.streak} jours`;
+  let rank = 'Débutant', title = 'Premiers regards loin';
+  if (state.points >= 50) { rank = 'Pratiquant'; title = 'L\'œil s\'éveille'; }
+  if (state.points >= 150) { rank = 'Avancé'; title = 'L\'Active Focus s\'installe'; }
+  if (state.points >= 300) { rank = 'Expert vision'; title = 'La vision se libère'; }
+  document.getElementById('userRank').textContent = rank;
+  document.getElementById('userTitle').textContent = title;
+}
+
+function navigate(view) {
+  document.querySelectorAll('.menu-item').forEach(b => b.classList.toggle('active', b.dataset.view === view));
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-'+view));
+  document.title = DEFAULT_TITLE;
+  if (view === 'measure') renderMeasureView();
+  if (view === 'snellen') renderSnellenView();
+  if (view === 'prescription') renderPrescriptionView();
+  if (view === 'outdoor') renderOutdoorView();
+  if (view === 'pause') renderPauseView();
+  if (view === 'active') renderAfView();
+  if (view === 'exercises') renderExercisesView();
+  if (view === 'modules') showModulesList();
+  if (view === 'protocols') renderProtocols();
+  if (view === 'journal') renderJournal();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+document.querySelectorAll('.menu-item').forEach(b => b.addEventListener('click', () => navigate(b.dataset.view)));
+
+/* ===== MEASURE TOOL ===== */
+function updateDiopter() {
+  const cm = parseFloat(document.getElementById('measureCm').value);
+  const valEl = document.getElementById('diopterValue');
+  const helpEl = document.getElementById('diopterHelp');
+  if (!cm || cm <= 0) {
+    valEl.textContent = '—';
+    helpEl.textContent = 'Entrez votre distance pour calculer.';
+    return;
+  }
+  const diopter = 100 / cm;
+  valEl.textContent = '-' + diopter.toFixed(2) + ' D';
+  let interp = '';
+  if (diopter < 1) interp = 'Myopie très légère ou normale.';
+  else if (diopter < 2) interp = 'Myopie légère.';
+  else if (diopter < 4) interp = 'Myopie modérée.';
+  else if (diopter < 6) interp = 'Myopie modérée à forte.';
+  else interp = 'Myopie forte. Suivi médical recommandé.';
+  helpEl.textContent = interp + ' (formule : 100 / ' + cm + ' = ' + diopter.toFixed(2) + ')';
+}
+function saveMeasure() {
+  const cm = parseFloat(document.getElementById('measureCm').value);
+  const eye = document.getElementById('measureEye').value;
+  const cyl = parseFloat(document.getElementById('measureCyl').value);
+  const axis = parseInt(document.getElementById('measureAxis').value, 10);
+  if (!cm || cm <= 0) { toast('Entrez une distance valide en cm'); return; }
+  const diopter = 100 / cm;
+  const m = { date: new Date().toISOString(), cm, diopter, eye };
+  if (!isNaN(cyl) && cyl < 0) m.cyl = cyl;
+  if (!isNaN(axis) && axis >= 0 && axis <= 180) m.axis = axis;
+  state.measures.push(m);
+  state.points += 5;
+  updateStreak();
+  save();
+  document.getElementById('measureCm').value = '';
+  document.getElementById('measureCyl').value = '';
+  document.getElementById('measureAxis').value = '';
+  updateDiopter();
+  toast('+5 pts · Mesure enregistrée');
+  renderMeasureView();
+}
+function deleteMeasure(i) {
+  if (!confirm('Supprimer cette mesure ?')) return;
+  state.measures.splice(i, 1); save(); renderMeasureView();
+}
+function lastMeasureForEye(eye) {
+  for (let i = state.measures.length - 1; i >= 0; i--) {
+    if (state.measures[i].eye === eye || state.measures[i].eye === 'both') return state.measures[i];
+  }
+  return null;
+}
+function computeTrend(eye) {
+  // Régression linéaire simple sur les dioptries dans le temps pour cet œil
+  const points = state.measures.filter(m => m.eye === eye || m.eye === 'both');
+  if (points.length < 3) return null;
+  const t0 = new Date(points[0].date).getTime();
+  const xs = points.map(m => (new Date(m.date).getTime() - t0) / (30 * 86400000)); // en mois
+  const ys = points.map(m => m.diopter);
+  const n = xs.length;
+  const sx = xs.reduce((a,b)=>a+b,0);
+  const sy = ys.reduce((a,b)=>a+b,0);
+  const sxy = xs.reduce((a,b,i)=>a+b*ys[i],0);
+  const sxx = xs.reduce((a,b)=>a+b*b,0);
+  const denom = n*sxx - sx*sx;
+  if (Math.abs(denom) < 1e-9) return null;
+  const slope = (n*sxy - sx*sy) / denom; // D/mois
+  return slope;
+}
+function renderMeasureView() {
+  // Top stats
+  const odLast = lastMeasureForEye('right');
+  const ogLast = lastMeasureForEye('left');
+  const odEl = document.getElementById('statOdCurrent');
+  const ogEl = document.getElementById('statOgCurrent');
+  const trendEl = document.getElementById('statTrend');
+  if (odEl) odEl.textContent = odLast ? '-' + odLast.diopter.toFixed(2) : '—';
+  if (ogEl) ogEl.textContent = ogLast ? '-' + ogLast.diopter.toFixed(2) : '—';
+  // Trend (moyenne OD/OG)
+  if (trendEl) {
+    const tOd = computeTrend('right');
+    const tOg = computeTrend('left');
+    const trends = [tOd, tOg].filter(t => t !== null);
+    if (trends.length === 0) {
+      trendEl.textContent = '—';
+    } else {
+      const avg = trends.reduce((a,b)=>a+b,0) / trends.length;
+      const sign = avg < 0 ? '↓' : (avg > 0 ? '↑' : '=');
+      trendEl.textContent = sign + Math.abs(avg).toFixed(2);
+    }
+  }
+  // History
+  const hist = document.getElementById('measureHistory');
+  if (state.measures.length === 0) {
+    hist.innerHTML = `<p style="color: var(--ink-mute); font-style: italic; text-align: center; padding: 16px;">Aucune mesure enregistrée.</p>`;
+  } else {
+    hist.innerHTML = [...state.measures].reverse().map((m, idx) => {
+      const realIdx = state.measures.length - 1 - idx;
+      const d = new Date(m.date);
+      const dStr = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+      const eyeLabel = m.eye === 'right' ? 'OD' : (m.eye === 'left' ? 'OG' : 'OD+OG');
+      const cylStr = m.cyl ? ` · cyl ${m.cyl}` + (m.axis ? '×' + m.axis + '°' : '') : '';
+      return `<div class="measure-row"><span class="date">${dStr} · ${eyeLabel}</span><span class="vals">${m.cm} cm · -${m.diopter.toFixed(2)} D${cylStr}</span><button class="delete" onclick="deleteMeasure(${realIdx})" title="Supprimer">×</button></div>`;
+    }).join('');
+  }
+  // Graph (last 12 measures, séparé OD/OG)
+  const graph = document.getElementById('measureGraph');
+  const recent = state.measures.slice(-12);
+  if (recent.length === 0) {
+    graph.innerHTML = `<div style="text-align: center; color: var(--ink-mute); font-style: italic; padding-top: 70px;">Aucune mesure encore. Faites votre première mesure ci-dessus.</div>`;
+    return;
+  }
+  const maxD = Math.max(...recent.map(m => m.diopter), 1);
+  graph.innerHTML = `<div style="height: 100%; display: flex; align-items: flex-end; padding-bottom: 24px; padding-top: 22px; overflow-x: auto;">${recent.map(m => {
+    const h = (m.diopter / maxD) * 100;
+    const d = new Date(m.date);
+    const dStr = d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' });
+    const color = m.eye === 'right' ? 'linear-gradient(180deg, var(--sun), var(--sun-soft))' : (m.eye === 'left' ? 'linear-gradient(180deg, var(--sky), var(--sky-soft))' : 'linear-gradient(180deg, var(--nature), var(--nature-soft))');
+    const eyeLab = m.eye === 'right' ? 'OD' : (m.eye === 'left' ? 'OG' : '⊕');
+    return `<div class="graph-bar" style="height: ${h}%; background: ${color};" title="${eyeLab} · ${m.cm}cm"><span class="val">${m.diopter.toFixed(1)}</span><span class="lbl">${dStr} ${eyeLab}</span></div>`;
+  }).join('')}</div><div style="margin-top: 28px; font-size: 11px; color: var(--ink-mute); text-align: center;">🟡 OD &nbsp;·&nbsp; 🔵 OG &nbsp;·&nbsp; 🟢 deux yeux</div>`;
+}
+
+/* ===== EXPORT CSV ===== */
+function exportMeasuresCSV() {
+  if (state.measures.length === 0 && state.snellenTests.length === 0 && state.prescriptions.length === 0) {
+    toast('Aucune donnée à exporter');
+    return;
+  }
+  let csv = 'Type,Date,Œil,Distance (cm),Dioptries,Cylindre,Axe,Snellen,Correction,Sphère OD,Cyl OD,Sphère OG,Cyl OG,Distance écran (cm)\n';
+  state.measures.forEach(m => {
+    const d = new Date(m.date).toISOString();
+    csv += `mesure_cm,${d},${m.eye},${m.cm},-${m.diopter.toFixed(2)},${m.cyl||''},${m.axis||''},,,,,,\n`;
+  });
+  state.snellenTests.forEach(s => {
+    const d = new Date(s.date).toISOString();
+    csv += `snellen,${d},${s.eye},,,,,20/${s.result},${s.corrected},,,,\n`;
+  });
+  state.prescriptions.forEach(p => {
+    const d = new Date(p.date).toISOString();
+    csv += `prescription,${d},,,,,,,,${p.odSph||''},${p.odCyl||''},${p.ogSph||''},${p.ogCyl||''},${p.screenDist||''}\n`;
+  });
+  const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'vision-data-' + todayStr() + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  toast('Export CSV téléchargé');
+}
+
+/* ===== SNELLEN TEST ===== */
+function getScreenPxPerInch(diagInches) {
+  // Calcul : diagonale en pixels = sqrt(w^2 + h^2), donc PPI = diag_px / diag_inches
+  const w = window.screen.width;
+  const h = window.screen.height;
+  const diagPx = Math.sqrt(w*w + h*h);
+  return diagPx / diagInches;
+}
+function updateSnellen() {
+  const diag = parseFloat(document.getElementById('snellenDiag').value);
+  const dist = parseFloat(document.getElementById('snellenDist').value);
+  const calibEl = document.getElementById('snellenCalib');
+  const distLabel = document.getElementById('snellenDistLabel');
+  if (distLabel) distLabel.textContent = dist;
+  if (!diag || diag <= 0) {
+    calibEl.textContent = '↑ Entrez la diagonale de l\'écran pour activer le test';
+    document.getElementById('snellenChart').innerHTML = `<div style="color: #666; font-style: italic; padding: 60px 0;">Calibrez l'écran ci-dessus pour afficher le tableau</div>`;
+    return;
+  }
+  const ppi = getScreenPxPerInch(diag);
+  const mmPerInch = 25.4;
+  const ppmm = ppi / mmPerInch;
+  // Taille d'une lettre 20/20 à distance D (mètres) : 5 minutes d'arc → hauteur = D * tan(5/60°) ≈ D * 1.454 mm/m
+  // Mais Snellen standard : à 6m une lettre 20/20 fait 8.73mm. Pour distance D : taille = (8.73 * D) / 6.
+  // Donc taille_mm pour 20/X à distance D = (8.73 * D / 6) * (X/20)
+  const baseSize_mm = (8.73 * dist) / 6; // taille 20/20 à distance D
+  calibEl.textContent = `✓ Calibré : ${ppi.toFixed(0)} PPI · une lettre 20/20 à ${dist}m doit faire ${baseSize_mm.toFixed(2)} mm de haut sur votre écran`;
+
+  const lines = [
+    { label: '20/200', factor: 200/20 },
+    { label: '20/100', factor: 100/20 },
+    { label: '20/70', factor: 70/20 },
+    { label: '20/50', factor: 50/20 },
+    { label: '20/40', factor: 40/20 },
+    { label: '20/30', factor: 30/20 },
+    { label: '20/25', factor: 25/20 },
+    { label: '20/20', factor: 20/20 }
+  ];
+  // Lettres Snellen standard
+  const letters = ['E', 'F P', 'T O Z', 'L P E D', 'P E C F D', 'E D F C Z P', 'F E L O P Z D', 'D E F P O T E C'];
+  const chart = lines.map((l, i) => {
+    const size_mm = baseSize_mm * l.factor;
+    const size_px = size_mm * ppmm;
+    const lineLetters = letters[Math.min(i, letters.length - 1)];
+    return `<div style="margin: 6px 0; line-height: 1;">
+      <span style="font-family: monospace; font-size: ${size_px}px; font-weight: 700; color: #000; letter-spacing: ${size_px*0.15}px;">${lineLetters}</span>
+      <span style="font-size: 11px; color: #999; vertical-align: top; margin-left: 12px;">${l.label}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('snellenChart').innerHTML = chart;
+}
+function saveSnellen() {
+  const result = document.getElementById('snellenResult').value;
+  const eye = document.getElementById('snellenEye').value;
+  const corrected = document.getElementById('snellenCorrected').value;
+  if (!result) { toast('Sélectionnez la plus petite ligne lue'); return; }
+  state.snellenTests.push({
+    date: new Date().toISOString(),
+    eye, corrected,
+    result: parseInt(result, 10)
+  });
+  state.points += 5;
+  updateStreak();
+  save();
+  toast('+5 pts · Test Snellen enregistré');
+  renderSnellenView();
+}
+function deleteSnellen(i) {
+  if (!confirm('Supprimer ce test ?')) return;
+  state.snellenTests.splice(i, 1); save(); renderSnellenView();
+}
+function renderSnellenView() {
+  updateSnellen();
+  const hist = document.getElementById('snellenHistory');
+  if (state.snellenTests.length === 0) {
+    hist.innerHTML = `<p style="color: var(--ink-mute); font-style: italic; text-align: center; padding: 16px;">Aucun test enregistré.</p>`;
+    return;
+  }
+  hist.innerHTML = [...state.snellenTests].reverse().map((s, idx) => {
+    const realIdx = state.snellenTests.length - 1 - idx;
+    const d = new Date(s.date);
+    const dStr = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+    const eyeLabel = s.eye === 'right' ? 'OD' : (s.eye === 'left' ? 'OG' : 'OD+OG');
+    const corrLabel = { naked: 'œil nu', differential: 'différentielles', normalized: 'normalisées', full: 'pleine correction' }[s.corrected] || s.corrected;
+    return `<div class="measure-row"><span class="date">${dStr} · ${eyeLabel} (${corrLabel})</span><span class="vals">20/${s.result}</span><button class="delete" onclick="deleteSnellen(${realIdx})" title="Supprimer">×</button></div>`;
+  }).join('');
+}
+
+/* ===== PRESCRIPTION CALCULATOR ===== */
+function calcDifferential(sphere, screenDistCm) {
+  // Pour voir net à distance d'écran : add ≈ 100/dist en dioptries (positives)
+  // Si sphere = -3.50 et dist = 60cm : add = +1.67, différentielle = -3.50 + 1.67 = -1.83 → arrondi à 0.25 près = -1.75
+  // Mais EndMyopia recommande de garder un léger blur (pas vision parfaite à l'écran)
+  // Formule simplifiée : différentielle = sphere + (100/dist) - 0.25 (pour blur léger)
+  if (sphere === null || isNaN(sphere)) return null;
+  if (!screenDistCm || screenDistCm <= 0) screenDistCm = 60;
+  const add = 100 / screenDistCm;
+  let diff = sphere + add - 0.25;
+  // Arrondi au 0.25 le plus proche
+  diff = Math.round(diff * 4) / 4;
+  // Borne supérieure : ne pas dépasser 0 (lunettes positives = hypermétropie, pas pour myope)
+  if (diff > 0) diff = 0;
+  return diff;
+}
+function calcNormalized(sphere) {
+  if (sphere === null || isNaN(sphere)) return null;
+  // Normalisée = sphère + 0.25 (sous-correction de 0.25)
+  let norm = sphere + 0.25;
+  norm = Math.round(norm * 4) / 4;
+  if (norm > 0) norm = 0;
+  return norm;
+}
+function fmtSph(v) {
+  if (v === null || isNaN(v)) return '—';
+  return (v >= 0 ? '+' : '') + v.toFixed(2);
+}
+function updatePrescriptionCalc() {
+  const odSph = parseFloat(document.getElementById('prescOdSph').value);
+  const odCyl = parseFloat(document.getElementById('prescOdCyl').value);
+  const odAxis = parseInt(document.getElementById('prescOdAxis').value, 10);
+  const ogSph = parseFloat(document.getElementById('prescOgSph').value);
+  const ogCyl = parseFloat(document.getElementById('prescOgCyl').value);
+  const ogAxis = parseInt(document.getElementById('prescOgAxis').value, 10);
+  const screenDist = parseFloat(document.getElementById('prescScreenDist').value) || 60;
+
+  const odDiff = calcDifferential(odSph, screenDist);
+  const ogDiff = calcDifferential(ogSph, screenDist);
+  const odNorm = calcNormalized(odSph);
+  const ogNorm = calcNormalized(ogSph);
+
+  const cylStr = (cyl, axis) => (!isNaN(cyl) && cyl < 0) ? ` cyl ${cyl.toFixed(2)}` + (!isNaN(axis) ? ` ax ${axis}°` : '') : '';
+
+  const diffOut = document.getElementById('diffOutput');
+  const normOut = document.getElementById('normOutput');
+
+  if (isNaN(odSph) && isNaN(ogSph)) {
+    diffOut.innerHTML = `<em style="color: var(--ink-mute);">Entrez votre prescription pour calculer</em>`;
+    normOut.innerHTML = `<em style="color: var(--ink-mute);">Entrez votre prescription pour calculer</em>`;
+    return;
+  }
+
+  diffOut.innerHTML = `
+    <div style="display: grid; gap: 8px;">
+      <div>OD : <strong>${fmtSph(odDiff)}</strong>${cylStr(odCyl, odAxis)}</div>
+      <div>OG : <strong>${fmtSph(ogDiff)}</strong>${cylStr(ogCyl, ogAxis)}</div>
+      <div style="font-size: 11px; color: var(--ink-mute); margin-top: 6px;">Pour distance d'écran ${screenDist} cm, avec léger blur (active focus au quotidien)</div>
+    </div>`;
+  normOut.innerHTML = `
+    <div style="display: grid; gap: 8px;">
+      <div>OD : <strong>${fmtSph(odNorm)}</strong>${cylStr(odCyl, odAxis)}</div>
+      <div>OG : <strong>${fmtSph(ogNorm)}</strong>${cylStr(ogCyl, ogAxis)}</div>
+      <div style="font-size: 11px; color: var(--ink-mute); margin-top: 6px;">Sous-correction de 0.25 D pour blur horizon léger en distance</div>
+    </div>`;
+}
+function savePrescription() {
+  const odSph = parseFloat(document.getElementById('prescOdSph').value);
+  const ogSph = parseFloat(document.getElementById('prescOgSph').value);
+  if (isNaN(odSph) && isNaN(ogSph)) { toast('Entrez au moins la sphère d\'un œil'); return; }
+  const presc = {
+    date: new Date().toISOString(),
+    odSph: isNaN(odSph) ? null : odSph,
+    odCyl: parseFloat(document.getElementById('prescOdCyl').value) || null,
+    odAxis: parseInt(document.getElementById('prescOdAxis').value, 10) || null,
+    ogSph: isNaN(ogSph) ? null : ogSph,
+    ogCyl: parseFloat(document.getElementById('prescOgCyl').value) || null,
+    ogAxis: parseInt(document.getElementById('prescOgAxis').value, 10) || null,
+    screenDist: parseFloat(document.getElementById('prescScreenDist').value) || 60
+  };
+  state.prescriptions.push(presc);
+  state.points += 8;
+  save();
+  toast('+8 pts · Prescription enregistrée');
+  renderPrescriptionView();
+}
+function deletePrescription(i) {
+  if (!confirm('Supprimer cette prescription ?')) return;
+  state.prescriptions.splice(i, 1); save(); renderPrescriptionView();
+}
+function renderPrescriptionView() {
+  // Pré-remplir avec la dernière prescription si disponible
+  if (state.prescriptions.length > 0) {
+    const last = state.prescriptions[state.prescriptions.length - 1];
+    if (!document.getElementById('prescOdSph').value && last.odSph !== null) document.getElementById('prescOdSph').value = last.odSph;
+    if (!document.getElementById('prescOdCyl').value && last.odCyl !== null) document.getElementById('prescOdCyl').value = last.odCyl;
+    if (!document.getElementById('prescOdAxis').value && last.odAxis !== null) document.getElementById('prescOdAxis').value = last.odAxis;
+    if (!document.getElementById('prescOgSph').value && last.ogSph !== null) document.getElementById('prescOgSph').value = last.ogSph;
+    if (!document.getElementById('prescOgCyl').value && last.ogCyl !== null) document.getElementById('prescOgCyl').value = last.ogCyl;
+    if (!document.getElementById('prescOgAxis').value && last.ogAxis !== null) document.getElementById('prescOgAxis').value = last.ogAxis;
+    if (!document.getElementById('prescScreenDist').value) document.getElementById('prescScreenDist').value = last.screenDist;
+  }
+  updatePrescriptionCalc();
+  // Historique
+  const hist = document.getElementById('prescHistory');
+  if (state.prescriptions.length === 0) {
+    hist.innerHTML = `<p style="color: var(--ink-mute); font-style: italic; text-align: center; padding: 16px;">Aucune prescription enregistrée.</p>`;
+    return;
+  }
+  hist.innerHTML = [...state.prescriptions].reverse().map((p, idx) => {
+    const realIdx = state.prescriptions.length - 1 - idx;
+    const d = new Date(p.date);
+    const dStr = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+    const odStr = p.odSph !== null ? `OD ${fmtSph(p.odSph)}${p.odCyl ? ' cyl ' + p.odCyl.toFixed(2) : ''}${p.odAxis ? ' ax ' + p.odAxis + '°' : ''}` : '';
+    const ogStr = p.ogSph !== null ? `OG ${fmtSph(p.ogSph)}${p.ogCyl ? ' cyl ' + p.ogCyl.toFixed(2) : ''}${p.ogAxis ? ' ax ' + p.ogAxis + '°' : ''}` : '';
+    return `<div class="measure-row"><span class="date">${dStr}</span><span class="vals">${odStr} &nbsp; ${ogStr}</span><button class="delete" onclick="deletePrescription(${realIdx})" title="Supprimer">×</button></div>`;
+  }).join('');
+}
+
+/* ===== OUTDOOR TIMER ===== */
+let outdoorInterval = null;
+function outdoorToggle() {
+  if (state.outdoorRunning) {
+    // Stop and save session
+    const dur = Math.floor((Date.now() - state.outdoorStartTime) / 1000);
+    if (dur >= 30) { // au moins 30 sec
+      state.outdoorSessions.push({ date: new Date().toISOString(), duration: dur });
+      state.points += Math.floor(dur / 600); // 1 pt par 10 min
+      updateStreak();
+      toast('+' + Math.floor(dur/600) + ' pts · Session enregistrée (' + fmtTime(dur) + ')');
+    } else {
+      toast('Session trop courte (< 30s) — non enregistrée');
+    }
+    state.outdoorRunning = false;
+    state.outdoorStartTime = null;
+    if (outdoorInterval) { clearInterval(outdoorInterval); outdoorInterval = null; }
+    save();
+  } else {
+    state.outdoorRunning = true;
+    state.outdoorStartTime = Date.now();
+    save();
+    if (outdoorInterval) clearInterval(outdoorInterval);
+    outdoorInterval = setInterval(() => renderOutdoorView(), 1000);
+  }
+  renderOutdoorView();
+}
+function outdoorReset() {
+  if (!confirm('Réinitialiser le timer ? La session en cours ne sera pas enregistrée.')) return;
+  state.outdoorRunning = false;
+  state.outdoorStartTime = null;
+  if (outdoorInterval) { clearInterval(outdoorInterval); outdoorInterval = null; }
+  save();
+  renderOutdoorView();
+}
+function outdoorAddManual() {
+  const m = prompt('Combien de minutes à ajouter manuellement ? (ex : 45)');
+  if (!m) return;
+  const mins = parseInt(m, 10);
+  if (isNaN(mins) || mins <= 0 || mins > 600) { toast('Valeur invalide (1-600 min)'); return; }
+  state.outdoorSessions.push({ date: new Date().toISOString(), duration: mins * 60, manual: true });
+  state.points += Math.floor(mins / 10);
+  updateStreak();
+  save();
+  toast('+' + mins + ' min ajoutées manuellement');
+  renderOutdoorView();
+}
+function renderOutdoorView() {
+  const today = todayStr();
+  let runningDur = 0;
+  if (state.outdoorRunning && state.outdoorStartTime) {
+    runningDur = Math.floor((Date.now() - state.outdoorStartTime) / 1000);
+  }
+  document.getElementById('outdoorClock').textContent = fmtTime(runningDur);
+  document.getElementById('outdoorMode').textContent = state.outdoorRunning ? '⏱ Session en cours' : 'Session arrêtée';
+  document.getElementById('outdoorStartBtn').textContent = state.outdoorRunning ? '⏸ Arrêter et enregistrer' : '▶ Démarrer';
+  // Cumuls
+  const todaySec = state.outdoorSessions.filter(s => s.date.slice(0,10) === today).reduce((a,s) => a + s.duration, 0) + runningDur;
+  document.getElementById('outdoorTodayCumul').textContent = fmtHM(todaySec);
+  const targetSec = 2 * 3600;
+  const pctTarget = Math.min(100, Math.round(todaySec / targetSec * 100));
+  document.getElementById('outdoorTarget').textContent = `Objectif aujourd'hui : 2h00 — ${pctTarget}% atteint`;
+  // Week
+  const weekAgo = Date.now() - 7 * 86400000;
+  const weekSec = state.outdoorSessions.filter(s => new Date(s.date).getTime() >= weekAgo).reduce((a,s) => a + s.duration, 0);
+  document.getElementById('outdoorWeekCumul').textContent = fmtHM(weekSec);
+  // Average per day
+  const distinctDays = new Set(state.outdoorSessions.map(s => s.date.slice(0,10))).size || 1;
+  const totalSec = state.outdoorSessions.reduce((a,s) => a + s.duration, 0);
+  document.getElementById('outdoorAvgCumul').textContent = fmtHM(Math.floor(totalSec / distinctDays));
+}
+
+/* ===== PAUSE TIMER ===== */
+let pauseInterval = null;
+const PAUSE_PHASES = {
+  work: { label: 'Phase travail proche', duration: 3*3600, next: 'distance', color: 'var(--sun)' },
+  distance: { label: 'Phase pause distance', duration: 60*60, next: 'work', color: 'var(--nature-soft)' }
+};
+function pauseToggle() {
+  if (state.pauseRunning) {
+    // Stop
+    state.pauseRunning = false;
+    state.pauseStartTime = null;
+    if (pauseInterval) { clearInterval(pauseInterval); pauseInterval = null; }
+  } else {
+    state.pauseRunning = true;
+    state.pauseStartTime = Date.now();
+    if (pauseInterval) clearInterval(pauseInterval);
+    pauseInterval = setInterval(() => {
+      if (state.pauseRunning && state.pauseStartTime) {
+        const elapsed = Math.floor((Date.now() - state.pauseStartTime) / 1000);
+        const remaining = state.pauseRemaining - elapsed;
+        if (remaining <= 0) {
+          // Phase ended
+          const completedPhase = state.pausePhase;
+          state.pauseSessions.push({ date: new Date().toISOString(), phase: completedPhase, duration: PAUSE_PHASES[completedPhase].duration });
+          state.points += completedPhase === 'work' ? 5 : 8;
+          state.pausePhase = PAUSE_PHASES[completedPhase].next;
+          state.pauseRemaining = PAUSE_PHASES[state.pausePhase].duration;
+          state.pauseStartTime = Date.now();
+          save();
+          toast('Phase terminée → ' + PAUSE_PHASES[state.pausePhase].label);
+          try { playBeep(); } catch(e) {}
+        }
+        renderPauseView();
+      }
+    }, 1000);
+  }
+  save();
+  renderPauseView();
+}
+function pauseSwitch() {
+  if (!confirm('Passer manuellement à l\'autre phase ?')) return;
+  state.pausePhase = PAUSE_PHASES[state.pausePhase].next;
+  state.pauseRemaining = PAUSE_PHASES[state.pausePhase].duration;
+  state.pauseStartTime = state.pauseRunning ? Date.now() : null;
+  save();
+  renderPauseView();
+}
+function pauseReset() {
+  if (!confirm('Réinitialiser le timer de pause ?')) return;
+  state.pauseRunning = false;
+  state.pausePhase = 'work';
+  state.pauseRemaining = 3*3600;
+  state.pauseStartTime = null;
+  if (pauseInterval) { clearInterval(pauseInterval); pauseInterval = null; }
+  save();
+  renderPauseView();
+}
+function renderPauseView() {
+  let remaining = state.pauseRemaining;
+  if (state.pauseRunning && state.pauseStartTime) {
+    const elapsed = Math.floor((Date.now() - state.pauseStartTime) / 1000);
+    remaining = Math.max(0, state.pauseRemaining - elapsed);
+  }
+  document.getElementById('pauseClock').textContent = fmtTime(remaining);
+  const phase = PAUSE_PHASES[state.pausePhase];
+  const modeEl = document.getElementById('pauseMode');
+  modeEl.textContent = phase.label;
+  modeEl.className = 'pause-mode-indicator' + (state.pausePhase === 'distance' ? ' distance' : '');
+  document.getElementById('pauseTarget').textContent = state.pausePhase === 'work'
+    ? 'Travail proche → puis pause distance d\'1 heure'
+    : 'Pause distance → vraie déconnexion oculaire';
+  document.getElementById('pauseStartBtn').textContent = state.pauseRunning ? '⏸ Pause' : '▶ Démarrer';
+  // History this week
+  const weekAgo = Date.now() - 7 * 86400000;
+  const recentSessions = state.pauseSessions.filter(s => new Date(s.date).getTime() >= weekAgo).reverse();
+  const histEl = document.getElementById('pauseHistory');
+  if (recentSessions.length === 0) {
+    histEl.innerHTML = `<p style="color: var(--ink-mute); font-style: italic; text-align: center; padding: 16px;">Aucune session terminée encore.</p>`;
+  } else {
+    histEl.innerHTML = recentSessions.map(s => {
+      const d = new Date(s.date);
+      const dStr = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+      const phaseLabel = s.phase === 'work' ? '🖥 Travail' : '🌳 Distance';
+      return `<div class="measure-row"><span class="date">${dStr}</span><span class="vals">${phaseLabel} · ${fmtHM(s.duration)}</span><span></span></div>`;
+    }).join('');
+  }
+}
+function playBeep() {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.connect(gain); gain.connect(ctx.destination);
+  osc.frequency.value = 660;
+  gain.gain.setValueAtTime(0.3, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6);
+  osc.start(); osc.stop(ctx.currentTime + 0.6);
+}
+
+/* ===== ACTIVE FOCUS GUIDE ===== */
+let afState = { running: false, currentStep: 0, stepRemaining: 60, interval: null };
+function renderAfView() {
+  const list = document.getElementById('afStepsList');
+  list.innerHTML = afSteps.map((s, i) => `
+    <div class="af-step ${i === afState.currentStep ? 'active' : ''}">
+      <div class="num">Étape ${i+1} / ${afSteps.length}</div>
+      <h4>${s.title}</h4>
+      <p>${s.desc}</p>
+    </div>`).join('');
+  document.getElementById('afTimer').textContent = fmtTime(afState.stepRemaining);
+  document.getElementById('afStartBtn').textContent = afState.running ? '⏸ Pause' : '▶ Démarrer l\'exercice';
+}
+function afToggle() {
+  if (afState.running) {
+    afState.running = false;
+    if (afState.interval) clearInterval(afState.interval);
+  } else {
+    afState.running = true;
+    afState.interval = setInterval(() => {
+      afState.stepRemaining--;
+      if (afState.stepRemaining <= 0) {
+        afNextStep();
+      }
+      renderAfView();
+    }, 1000);
+  }
+  renderAfView();
+}
+function afNextStep() {
+  if (afState.currentStep < afSteps.length - 1) {
+    afState.currentStep++;
+    afState.stepRemaining = 60;
+    try { playBeep(); } catch(e) {}
+    toast('Étape ' + (afState.currentStep + 1) + ' / ' + afSteps.length);
+  } else {
+    afState.running = false;
+    if (afState.interval) clearInterval(afState.interval);
+    afState.stepRemaining = 0;
+    toast('Exercice terminé — pensez à enregistrer vos observations');
+  }
+  renderAfView();
+}
+function afReset() {
+  afState.running = false;
+  afState.currentStep = 0;
+  afState.stepRemaining = 60;
+  if (afState.interval) clearInterval(afState.interval);
+  renderAfView();
+}
+function saveAfSession() {
+  const obs = document.getElementById('afObservation').value.trim();
+  if (!obs) { toast('Notez au moins quelques mots d\'observation'); return; }
+  state.afSessions.push({ date: new Date().toISOString(), observation: obs });
+  state.points += 8;
+  updateStreak();
+  save();
+  document.getElementById('afObservation').value = '';
+  toast('+8 pts · Session Active Focus enregistrée');
+}
+
+/* ===== STREAK ===== */
+function updateStreak() {
+  const today = todayStr();
+  if (state.lastActivityDate !== today) {
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+    if (state.lastActivityDate === yesterday) state.streak++;
+    else state.streak = 1;
+    state.lastActivityDate = today;
+  }
+}
+
+/* ===== MODULES ===== */
+function showModulesList() {
+  document.getElementById('modulesHome').style.display = 'block';
+  document.getElementById('moduleDetail').classList.remove('active');
+  const c = document.getElementById('modulesList');
+  c.innerHTML = modules.map(m => `
+    <div class="card module-card" onclick="openModule('${m.id}')">
+      <div class="module-num">${m.n}</div>
+      <div class="module-content">
+        <h3>${m.title}</h3>
+        <p>${m.teaser}</p>
+        <div class="module-meta"><span>⏱ ${m.duration}</span></div>
+      </div>
+      <div class="module-status ${state.modulesRead.includes(m.id) ? 'done' : ''}">${state.modulesRead.includes(m.id) ? '✓' : ''}</div>
+    </div>`).join('');
+}
+function openModule(id) {
+  const m = modules.find(x => x.id === id); if (!m) return;
+  document.getElementById('modulesHome').style.display = 'none';
+  const d = document.getElementById('moduleDetail');
+  d.classList.add('active');
+  d.innerHTML = `
+    <button class="module-back" onclick="showModulesList()">← retour aux principes</button>
+    <h2>${m.n}. ${m.title}</h2>
+    ${m.sections.map(s => renderSection(s)).join('')}
+    <div style="margin-top: 28px; display: flex; gap: 12px;">
+      ${state.modulesRead.includes(m.id) ? `<span style="color: var(--sun); font-style: italic;">✓ Principe assimilé</span>` : `<button class="btn" onclick="markModuleRead('${m.id}')">✓ Marquer comme lu</button>`}
+      <button class="btn btn-ghost" onclick="showModulesList()">Liste des principes</button>
+    </div>`;
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+function markModuleRead(id) {
+  if (!state.modulesRead.includes(id)) {
+    state.modulesRead.push(id); state.points += 10; save();
+    toast('+10 pts · Principe assimilé'); openModule(id);
+  }
+}
+function renderSection(s) {
+  if (s.h && s.p) return `<div class="module-section"><h4>${s.h}</h4><p>${s.p}</p></div>`;
+  if (s.h && s.ul) return `<div class="module-section"><h4>${s.h}</h4><ul>${s.ul.map(li => `<li>${li}</li>`).join('')}</ul></div>`;
+  if (s.quote) return `<div class="quote-block">${s.quote}<span class="who">— ${s.who}</span></div>`;
+  return '';
+}
+
+/* ===== PROTOCOLS ===== */
+function renderProtocols() {
+  const c = document.getElementById('protocolsList');
+  c.innerHTML = protocols.map(p => `
+    <div class="card protocol-card">
+      <div class="ptype">${p.type}</div>
+      <h3>${p.title}</h3>
+      <p style="color: var(--ink-soft); font-size: 14px; margin-bottom: 18px;">${p.desc}</p>
+      ${p.steps.map((s, i) => `
+        <div class="protocol-step">
+          <div class="pnum">${i+1}</div>
+          <div class="pcontent">
+            <div class="ptitle">${s.title}</div>
+            <div class="pdesc">${s.desc}</div>
+            ${s.time ? `<div class="ptime">⏱ ${s.time}</div>` : ''}
+          </div>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+/* ===== JOURNAL ===== */
+function addJournal() {
+  const t = document.getElementById('journalText').value.trim();
+  if (!t) return;
+  state.journal.unshift({ date: new Date().toISOString(), text: t });
+  state.points += 3; save();
+  document.getElementById('journalText').value = '';
+  renderJournal(); toast('+3 pts · Inscrit dans le journal');
+}
+function deleteJournal(i) {
+  if (!confirm('Supprimer cette entrée ?')) return;
+  state.journal.splice(i, 1); save(); renderJournal();
+}
+function renderJournal() {
+  const c = document.getElementById('journalList');
+  if (state.journal.length === 0) { c.innerHTML = `<div class="card" style="text-align:center; color: var(--ink-mute); font-style: italic;">Votre journal est vide. Commencez par 1 ligne aujourd'hui — qu'avez-vous observé sur votre vision ?</div>`; return; }
+  c.innerHTML = state.journal.map((e, i) => {
+    const d = new Date(e.date);
+    const dStr = d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+    return `<div class="card journal-entry"><button class="delete" onclick="deleteJournal(${i})" title="Supprimer">×</button><div class="date">${dStr}</div><div class="text">${escapeHtml(e.text)}</div></div>`;
+  }).join('');
+}
+
+/* ===== EYE EXERCISES ===== */
+const eyeExercises = [
+  { id: 'palming', name: 'Palming relaxant', icon: '✋', duration: 120, color: 'var(--nature)',
+    what: "Couvrir les yeux fermés avec les paumes pour bloquer toute lumière. Le muscle ciliaire (qui contrôle la mise au point) entre en relaxation profonde — comme un muscle qui sort de tension.",
+    when: "1-2× par jour, surtout après une longue session écran. Avant de dormir aussi.",
+    basis: "Technique popularisée par William Bates (1920). L'efficacité globale de la méthode Bates n'est pas validée scientifiquement, MAIS le bénéfice spécifique de la fermeture des yeux + obscurité totale pour le repos du muscle ciliaire est physiologiquement plausible et sans risque.",
+    steps: [
+      { title: "Préparation", desc: "Asseyez-vous confortablement, dos droit, coudes posés sur une table ou les cuisses. Frottez vos paumes l'une contre l'autre pendant 10 secondes pour les réchauffer.", duration: 15 },
+      { title: "Couvrir les yeux", desc: "Fermez les yeux. Placez vos paumes en coupe sur vos yeux (sans appuyer sur les globes oculaires). Les doigts se croisent sur le front. Aucune lumière ne doit passer.", duration: 10 },
+      { title: "Imaginez le noir profond", desc: "Visualisez du noir absolu, profond, velouté. Si vous voyez des résidus lumineux (taches colorées), continuez à imaginer le noir — ils s'estompent en 30-60 secondes.", duration: 60 },
+      { title: "Respiration calme", desc: "Continuez la couverture en respirant lentement et profondément. Sentez la chaleur des paumes apaiser vos yeux. Le muscle ciliaire se détend complètement.", duration: 30 },
+      { title: "Retour progressif", desc: "Sans rouvrir les yeux, retirez doucement vos mains. Restez yeux fermés 5 secondes. Puis rouvrez très progressivement — laissez la lumière revenir lentement.", duration: 5 }
+    ]
+  },
+  { id: 'nearfar', name: 'Near-Far Focus', icon: '🎯', duration: 180, color: 'var(--sun)',
+    what: "Alterner la focalisation entre un objet proche (15-20 cm) et un objet lointain (au-delà de 6 m). Entraîne la flexibilité de l'accommodation — la capacité du cristallin à se déformer rapidement.",
+    when: "1-2× par jour, idéalement près d'une fenêtre avec vue dégagée.",
+    basis: "Validé cliniquement comme exercice d'accommodation. Utilisé en orthoptie pour les troubles d'accommodation. Le cristallin devient plus réactif avec la pratique régulière.",
+    steps: [
+      { title: "Position", desc: "Placez-vous près d'une fenêtre. Tenez votre pouce à 15-20 cm de votre nez (à hauteur des yeux). Identifiez aussi un objet lointain par la fenêtre (arbre, bâtiment, à >6 m).", duration: 15 },
+      { title: "Cycle 1 — Focus proche", desc: "Regardez fixement votre pouce. Voyez les détails (texture, ongle, plis). Maintenez 10 secondes.", duration: 10 },
+      { title: "Cycle 1 — Focus lointain", desc: "Sans bouger la tête, basculez votre regard vers l'objet lointain. Voyez les détails (feuilles, fenêtres, contours). Maintenez 10 secondes.", duration: 10 },
+      { title: "Cycles 2-5 — Alternez", desc: "Continuez à alterner toutes les 10 secondes : pouce → objet lointain → pouce → objet lointain. Sentez le cristallin qui se réajuste à chaque bascule. Pas de force — laissez l'œil faire.", duration: 80 },
+      { title: "Cycles 6-9 — Plus rapide", desc: "Réduisez à 5 secondes par cible. La transition devient plus rapide. Si flou prolongé : ralentissez. Le but est la fluidité, pas la vitesse.", duration: 40 },
+      { title: "Repos final", desc: "Fermez les yeux 15 secondes. Sentez la détente du muscle ciliaire après l'effort.", duration: 25 }
+    ]
+  },
+  { id: 'saccades', name: 'Saccades distantes', icon: '↔', duration: 60, color: 'var(--sky)',
+    what: "Mouvements rapides du regard entre deux cibles distantes, sans bouger la tête. Entraîne les saccades — les mouvements oculaires les plus rapides, utilisés pour explorer une scène ou lire.",
+    when: "3-4× par semaine, après une longue concentration sur écran.",
+    basis: "Les saccades sont une fonction motrice oculaire essentielle. Leur entraînement régulier est utilisé en rééducation visuelle (vision sportive, post-traumatique). Aucun bénéfice prouvé sur la myopie elle-même, mais améliore la fluidité de lecture.",
+    steps: [
+      { title: "Choisir 2 cibles", desc: "Identifiez deux cibles distantes l'une de l'autre (gauche/droite, ou haut/bas). Idéalement à 2-3 m de vous, écartées d'au moins 1 m. Ex : deux coins opposés d'une fenêtre.", duration: 10 },
+      { title: "Saccades horizontales", desc: "Sans bouger la tête, basculez RAPIDEMENT le regard de la cible gauche à la cible droite. 1 seconde par cible. Les yeux 'sautent' — pas de mouvement lent. Faites 20 aller-retours.", duration: 25 },
+      { title: "Saccades verticales", desc: "Maintenant entre une cible en haut et une en bas. Mêmes règles : tête fixe, yeux qui sautent rapidement. 20 aller-retours.", duration: 20 },
+      { title: "Repos", desc: "Fermez les yeux 5 secondes. Légère sensation de fatigue normale.", duration: 5 }
+    ]
+  },
+  { id: 'pursuit', name: 'Smooth Pursuit (figure 8)', icon: '∞', duration: 120, color: 'var(--sky)',
+    what: "Suivre du regard un objet en mouvement lent (figure 8 ou cercles). Entraîne le « smooth pursuit » — le mouvement oculaire continu, différent des saccades.",
+    when: "2-3× par semaine, en parallèle des saccades.",
+    basis: "Le smooth pursuit est mesurable et entraînable. Utilisé en rééducation neurovisuelle (post-AVC, lésion cérébrale). Pour un sujet sain : maintient la qualité du contrôle oculomoteur. Pas d'effet direct sur la myopie démontré.",
+    steps: [
+      { title: "Position", desc: "Bras tendu devant vous, pouce levé à environ 50 cm. Tête immobile, regard sur le pouce. Posture droite, épaules relâchées.", duration: 10 },
+      { title: "Figure 8 lente — sens 1", desc: "Tracez un grand 8 horizontal (couché) avec votre pouce, très lentement. Vos yeux suivent le pouce sans saccades — un mouvement fluide continu. Faites 5 figures 8 dans ce sens.", duration: 40 },
+      { title: "Figure 8 lente — sens inverse", desc: "Inversez le sens du tracé. 5 figures 8 dans l'autre sens. Si votre regard 'décroche' (saute), ralentissez encore.", duration: 40 },
+      { title: "Cercles lents", desc: "Tracez maintenant 5 grands cercles dans un sens, puis 5 dans l'autre. Toujours avec un mouvement très lent et continu.", duration: 25 },
+      { title: "Repos", desc: "Fermez les yeux 5 secondes.", duration: 5 }
+    ]
+  },
+  { id: 'convergence', name: 'Convergence (Pencil Push-up)', icon: '✏', duration: 120, color: 'var(--sun)',
+    what: "Approcher progressivement un crayon de votre nez tout en gardant l'image unique. Entraîne la convergence — la capacité des deux yeux à se croiser pour fixer un objet proche.",
+    when: "Quotidien si vous avez de la fatigue à la lecture. Sinon 2-3× par semaine.",
+    basis: "Très bien validé cliniquement. C'est l'exercice de référence (« HBCT — Home-Based Convergence Therapy ») pour l'insuffisance de convergence — un trouble fréquent qui cause fatigue, mal de tête, lecture difficile. Étude CITT (2008) : efficace chez 70% des sujets après 12 semaines.",
+    steps: [
+      { title: "Préparation", desc: "Tenez un crayon (ou un stylo) horizontalement devant vous, pointe vers le haut, à bout de bras (~50 cm), à hauteur des yeux. Cachez un œil ? NON — l'exercice se fait avec les deux yeux ouverts.", duration: 10 },
+      { title: "Fixation initiale", desc: "Regardez la pointe du crayon. Vous devez voir UNE pointe nette (pas deux). Si vous voyez double : reculez le crayon jusqu'à voir une seule pointe.", duration: 10 },
+      { title: "Approche progressive", desc: "Très lentement (5 secondes pour parcourir 10 cm), rapprochez le crayon de votre nez. Continuez à fixer la pointe. Un instant viendra où vous verrez 2 crayons (l'œil ne tient plus la convergence).", duration: 30 },
+      { title: "Au point de doublement", desc: "Quand vous voyez double, ARRÊTEZ. Notez approximativement la distance. Reculez le crayon de 5 cm pour revenir à une seule image.", duration: 10 },
+      { title: "Répéter 5 fois", desc: "Refaites le mouvement (loin → proche → arrêt au doublement). À chaque répétition, vous devriez pouvoir approcher un peu plus. Objectif progressif : maintenir l'image unique jusqu'à 5-7 cm du nez.", duration: 50 },
+      { title: "Repos", desc: "Fermez les yeux 10 secondes. Légère fatigue normale.", duration: 10 }
+    ]
+  },
+  { id: 'blinking', name: 'Clignements complets', icon: '👁', duration: 60, color: 'var(--nature)',
+    what: "Réapprendre à cligner complètement. Devant un écran, le taux de clignement chute de 60% et 50% des clignements sont incomplets — d'où l'œil sec, la fatigue, la fausse-myopie temporaire.",
+    when: "1-2× par jour, surtout pendant ou après une session écran longue.",
+    basis: "Très bien documenté : Computer Vision Syndrome (CVS) touche 50-90% des utilisateurs intensifs d'écran. La rééducation au clignement complet est une recommandation standard de l'American Optometric Association.",
+    steps: [
+      { title: "Position détendue", desc: "Asseyez-vous, regardez droit devant vous (pas un écran). Visage et front relâchés. Conscience portée sur vos paupières.", duration: 10 },
+      { title: "Clignement complet — démonstration", desc: "Fermez complètement les yeux pendant 1-2 secondes (sentez les paupières se TOUCHER). Rouvrez. C'est ainsi qu'un clignement doit être : complet, prolongé. Faites-en 3.", duration: 12 },
+      { title: "Clignements lents (10 ×)", desc: "Faites 10 clignements lents : ferme 1 sec, repos paupière fermée 1 sec, rouvre, attends 2 sec, recommence. Sentez la lubrification des yeux à chaque cycle.", duration: 30 },
+      { title: "Conscience résiduelle", desc: "Pendant le reste de votre journée écran, essayez de placer 1 clignement complet toutes les 2-3 minutes. Quelques jours suffisent pour que ça devienne automatique.", duration: 8 }
+    ]
+  },
+  { id: 'rotation', name: 'Rotations oculaires', icon: '↻', duration: 60, color: 'var(--sky)',
+    what: "Mouvements circulaires lents des yeux dans les deux sens. Détend les muscles extra-oculaires (les 6 muscles qui orientent le globe oculaire).",
+    when: "1× par jour, en pause d'écran.",
+    basis: "Efficacité débattue scientifiquement — pas d'effet prouvé sur la myopie ou l'acuité. Mais sans risque, et sensation de détente subjective rapportée. À voir comme un « étirement » des muscles oculaires plutôt qu'une rééducation.",
+    steps: [
+      { title: "Position", desc: "Tête immobile, regard droit devant. Inspirez profondément.", duration: 5 },
+      { title: "Cercles vers la droite", desc: "Lentement, faites tourner vos yeux dans le sens horaire : haut → droite → bas → gauche → haut. Un cercle complet en 8 secondes. Faites 3 cercles.", duration: 25 },
+      { title: "Cercles vers la gauche", desc: "Inversez le sens : haut → gauche → bas → droite → haut. 3 cercles complets dans le sens antihoraire.", duration: 25 },
+      { title: "Repos", desc: "Fermez les yeux 5 secondes.", duration: 5 }
+    ]
+  },
+  { id: 'peripheral', name: 'Vision périphérique', icon: '◉', duration: 120, color: 'var(--nature)',
+    what: "Élargir consciemment votre champ de vision au-delà du point de fixation central. Lutte contre la « vision tunnel » induite par la concentration prolongée sur écran.",
+    when: "1-2× par jour, en pause d'écran.",
+    basis: "La vision périphérique est neurologiquement réelle (couvre ~180°). Sa sous-utilisation chronique (écrans, mode focused permanent) est documentée. L'entraînement à la vision périphérique est utilisé en sport (tennis, sports collectifs) avec gains mesurables d'attention spatiale.",
+    steps: [
+      { title: "Position", desc: "Choisissez un point de fixation devant vous (un point sur un mur, à 2-3 m). Tête et yeux totalement immobiles tournés vers ce point.", duration: 10 },
+      { title: "Élargir vers les côtés", desc: "Sans bouger les yeux, prenez conscience de ce que vous voyez à l'extrême gauche puis à l'extrême droite. Pas de tournage — juste l'attention. Vous verrez 'flou' mais c'est normal — la vision périphérique n'est pas nette, elle détecte le mouvement et les contrastes.", duration: 30 },
+      { title: "Élargir verticalement", desc: "Maintenant prenez conscience de ce qui est en haut et en bas de votre champ de vision, sans bouger les yeux. Plafond, sol, vos propres mains posées.", duration: 30 },
+      { title: "Vision globale", desc: "Élargissez pour englober tout le champ visible (180° horizontalement, 130° verticalement). C'est la « vision globale ». Sentez la différence avec la vision focalisée habituelle — plus relaxante, plus 'large'.", duration: 40 },
+      { title: "Retour focus", desc: "Revenez progressivement à la vision focalisée sur le point central. Notez le contraste : votre vision a-t-elle été un peu reposée ?", duration: 10 }
+    ]
+  }
+];
+
+let currentExercise = null;
+let exGuideState = { running: false, currentStep: 0, stepRemaining: 0, interval: null };
+
+function renderExercisesView() {
+  document.getElementById('exercisesHome').style.display = 'block';
+  document.getElementById('exerciseGuided').style.display = 'none';
+  // Stats
+  const today = todayStr();
+  const todayCount = state.exSessions.filter(s => s.date.slice(0,10) === today).length;
+  const weekAgo = Date.now() - 7 * 86400000;
+  const weekCount = state.exSessions.filter(s => new Date(s.date).getTime() >= weekAgo).length;
+  document.getElementById('exTodayCount').textContent = todayCount;
+  document.getElementById('exWeekCount').textContent = weekCount;
+  document.getElementById('exTotalCount').textContent = state.exSessions.length;
+  // List
+  const list = document.getElementById('exercisesList');
+  list.innerHTML = eyeExercises.map(ex => {
+    const doneToday = state.exSessions.some(s => s.exerciseId === ex.id && s.date.slice(0,10) === today);
+    const totalDone = state.exSessions.filter(s => s.exerciseId === ex.id).length;
+    const min = Math.floor(ex.duration / 60);
+    const sec = ex.duration % 60;
+    const durStr = min > 0 ? min + ' min' + (sec > 0 ? ' ' + sec + 's' : '') : sec + 's';
+    return `<div class="card" style="cursor: pointer; transition: all .2s; ${doneToday ? 'border-color: var(--nature);' : ''}" onclick="startExercise('${ex.id}')">
+      <div style="display: flex; align-items: flex-start; gap: 14px;">
+        <div style="font-size: 36px; min-width: 50px; text-align: center; line-height: 1;">${ex.icon}</div>
+        <div style="flex: 1;">
+          <div style="display: flex; justify-content: space-between; gap: 12px; align-items: flex-start;">
+            <h3 style="margin-bottom: 4px;">${ex.name}</h3>
+            ${doneToday ? '<span style="font-size: 11px; color: var(--nature-soft); padding: 3px 9px; background: rgba(138, 168, 144, 0.20); border-radius: 100px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">✓ fait aujourd&#39;hui</span>' : ''}
+          </div>
+          <p style="color: var(--ink-soft); font-size: 13px; line-height: 1.5; margin-bottom: 8px;">${ex.what}</p>
+          <div style="display: flex; gap: 14px; font-size: 11px; color: var(--ink-mute); letter-spacing: 1px;">
+            <span>⏱ ${durStr}</span>
+            <span>${ex.steps.length} étapes</span>
+            ${totalDone > 0 ? `<span>· ${totalDone} session${totalDone>1?'s':''}</span>` : ''}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function startExercise(id) {
+  const ex = eyeExercises.find(e => e.id === id);
+  if (!ex) return;
+  currentExercise = ex;
+  exGuideState = { running: false, currentStep: 0, stepRemaining: ex.steps[0].duration, interval: null };
+  document.getElementById('exercisesHome').style.display = 'none';
+  document.getElementById('exerciseGuided').style.display = 'block';
+  renderExerciseGuide();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+function exitExercise() {
+  if (exGuideState.interval) { clearInterval(exGuideState.interval); exGuideState.interval = null; }
+  exGuideState.running = false;
+  currentExercise = null;
+  renderExercisesView();
+}
+function renderExerciseGuide() {
+  if (!currentExercise) return;
+  const ex = currentExercise;
+  const totalDur = ex.steps.reduce((a,s) => a + s.duration, 0);
+  const min = Math.floor(totalDur / 60);
+  const sec = totalDur % 60;
+  document.getElementById('exGuideMeta').textContent = `${min > 0 ? min + ' min ' : ''}${sec > 0 ? sec + 's' : ''} · ${ex.steps.length} étapes`;
+  document.getElementById('exGuideName').textContent = ex.icon + ' ' + ex.name;
+  document.getElementById('exGuideWhat').textContent = ex.what;
+  document.getElementById('exGuideBasis').textContent = ex.basis;
+  document.getElementById('exGuideFreq').textContent = ex.when;
+  // Current step
+  const step = ex.steps[exGuideState.currentStep];
+  document.getElementById('exStepLabel').textContent = `Étape ${exGuideState.currentStep + 1} / ${ex.steps.length}`;
+  document.getElementById('exStepTitle').textContent = step.title;
+  document.getElementById('exStepDesc').textContent = step.desc;
+  document.getElementById('exTimer').textContent = fmtTime(exGuideState.stepRemaining);
+  document.getElementById('exStartBtn').textContent = exGuideState.running ? '⏸ Pause' : '▶ Démarrer';
+  // All steps
+  const allEl = document.getElementById('exAllSteps');
+  allEl.innerHTML = ex.steps.map((s, i) => {
+    const isActive = i === exGuideState.currentStep;
+    const isPassed = i < exGuideState.currentStep;
+    return `<div style="padding: 10px 14px; margin-bottom: 6px; background: ${isActive ? 'rgba(232, 181, 60, 0.15)' : 'rgba(255,255,255,0.03)'}; border-radius: 8px; border-left: 3px solid ${isActive ? 'var(--sun)' : (isPassed ? 'var(--nature)' : 'transparent')}; opacity: ${isPassed ? 0.6 : 1};">
+      <div style="font-size: 12px; color: ${isActive ? 'var(--sun)' : 'var(--ink-mute)'}; letter-spacing: 1px; text-transform: uppercase;">Étape ${i+1} · ${s.duration}s</div>
+      <div style="color: var(--ink); font-size: 14px; font-weight: 600; margin-top: 2px;">${s.title}</div>
+    </div>`;
+  }).join('');
+}
+function exToggle() {
+  if (!currentExercise) return;
+  if (exGuideState.running) {
+    exGuideState.running = false;
+    if (exGuideState.interval) clearInterval(exGuideState.interval);
+  } else {
+    exGuideState.running = true;
+    exGuideState.interval = setInterval(() => {
+      exGuideState.stepRemaining--;
+      if (exGuideState.stepRemaining <= 0) {
+        exNextStep();
+      } else {
+        renderExerciseGuide();
+      }
+    }, 1000);
+  }
+  renderExerciseGuide();
+}
+function exNextStep() {
+  if (!currentExercise) return;
+  if (exGuideState.currentStep < currentExercise.steps.length - 1) {
+    exGuideState.currentStep++;
+    exGuideState.stepRemaining = currentExercise.steps[exGuideState.currentStep].duration;
+    try { playBeep(); } catch(e) {}
+  } else {
+    // Exercise complete
+    exGuideState.running = false;
+    if (exGuideState.interval) clearInterval(exGuideState.interval);
+    exGuideState.stepRemaining = 0;
+    toast('Exercice terminé — pensez à valider et observer');
+    try { playBeep(); } catch(e) {}
+  }
+  renderExerciseGuide();
+}
+function exReset() {
+  if (!currentExercise) return;
+  if (exGuideState.interval) clearInterval(exGuideState.interval);
+  exGuideState.running = false;
+  exGuideState.currentStep = 0;
+  exGuideState.stepRemaining = currentExercise.steps[0].duration;
+  renderExerciseGuide();
+}
+function completeExercise() {
+  if (!currentExercise) return;
+  const obs = document.getElementById('exObs').value.trim();
+  state.exSessions.push({
+    date: new Date().toISOString(),
+    exerciseId: currentExercise.id,
+    exerciseName: currentExercise.name,
+    observation: obs
+  });
+  state.points += 5;
+  updateStreak();
+  save();
+  document.getElementById('exObs').value = '';
+  toast('+5 pts · ' + currentExercise.name + ' enregistré');
+  exitExercise();
+}
+
+// INIT
+showModulesList();
+renderProtocols();
+renderJournal();
+renderAfView();
+renderOutdoorView();
+renderPauseView();
+renderMeasureView();
+renderSnellenView();
+renderPrescriptionView();
+refreshDashboard();
+// Restart timers if running on reload
+if (state.outdoorRunning && state.outdoorStartTime) {
+  outdoorInterval = setInterval(() => renderOutdoorView(), 1000);
+}
+if (state.pauseRunning && state.pauseStartTime) {
+  pauseInterval = setInterval(() => {
+    if (state.pauseRunning && state.pauseStartTime) {
+      const elapsed = Math.floor((Date.now() - state.pauseStartTime) / 1000);
+      const remaining = state.pauseRemaining - elapsed;
+      if (remaining <= 0) {
+        const completedPhase = state.pausePhase;
+        state.pauseSessions.push({ date: new Date().toISOString(), phase: completedPhase, duration: PAUSE_PHASES[completedPhase].duration });
+        state.points += completedPhase === 'work' ? 5 : 8;
+        state.pausePhase = PAUSE_PHASES[completedPhase].next;
+        state.pauseRemaining = PAUSE_PHASES[state.pausePhase].duration;
+        state.pauseStartTime = Date.now();
+        save();
+        try { playBeep(); } catch(e) {}
+      }
+      renderPauseView();
+    }
+  }, 1000);
+}
+</script>
+</body>
+</html>
